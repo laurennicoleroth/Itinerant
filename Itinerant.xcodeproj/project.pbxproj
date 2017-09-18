@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9653315E1F704F4700F6F244 /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9653315D1F704F4700F6F244 /* LandingViewController.swift */; };
 		96F82F0D1F7049D800EE705D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F82F0C1F7049D800EE705D /* AppDelegate.swift */; };
-		96F82F0F1F7049D800EE705D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F82F0E1F7049D800EE705D /* ViewController.swift */; };
 		96F82F121F7049D800EE705D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96F82F101F7049D800EE705D /* Main.storyboard */; };
 		96F82F151F7049D800EE705D /* Itinerant.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 96F82F131F7049D800EE705D /* Itinerant.xcdatamodeld */; };
 		96F82F171F7049D800EE705D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96F82F161F7049D800EE705D /* Assets.xcassets */; };
@@ -32,9 +32,9 @@
 		1233D62B74C44C2C3B95B945 /* Pods-ItinerantTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ItinerantTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ItinerantTests/Pods-ItinerantTests.debug.xcconfig"; sourceTree = "<group>"; };
 		3F2662452108EE3C4998DC22 /* Pods-ItinerantTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ItinerantTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ItinerantTests/Pods-ItinerantTests.release.xcconfig"; sourceTree = "<group>"; };
 		5BB729D1E717B48A1D1AC139 /* Pods-Itinerant.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Itinerant.release.xcconfig"; path = "Pods/Target Support Files/Pods-Itinerant/Pods-Itinerant.release.xcconfig"; sourceTree = "<group>"; };
+		9653315D1F704F4700F6F244 /* LandingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
 		96F82F091F7049D800EE705D /* Itinerant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Itinerant.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96F82F0C1F7049D800EE705D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		96F82F0E1F7049D800EE705D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		96F82F111F7049D800EE705D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		96F82F141F7049D800EE705D /* Itinerant.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Itinerant.xcdatamodel; sourceTree = "<group>"; };
 		96F82F161F7049D800EE705D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -88,6 +88,26 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		9653315F1F704F5D00F6F244 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				9653315D1F704F4700F6F244 /* LandingViewController.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		965331601F704F7000F6F244 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				96F82F101F7049D800EE705D /* Main.storyboard */,
+				96F82F161F7049D800EE705D /* Assets.xcassets */,
+				96F82F181F7049D800EE705D /* LaunchScreen.storyboard */,
+				96F82F1B1F7049D800EE705D /* Info.plist */,
+				96F82F131F7049D800EE705D /* Itinerant.xcdatamodeld */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		96F82F001F7049D800EE705D = {
 			isa = PBXGroup;
 			children = (
@@ -112,12 +132,8 @@
 			isa = PBXGroup;
 			children = (
 				96F82F0C1F7049D800EE705D /* AppDelegate.swift */,
-				96F82F0E1F7049D800EE705D /* ViewController.swift */,
-				96F82F101F7049D800EE705D /* Main.storyboard */,
-				96F82F161F7049D800EE705D /* Assets.xcassets */,
-				96F82F181F7049D800EE705D /* LaunchScreen.storyboard */,
-				96F82F1B1F7049D800EE705D /* Info.plist */,
-				96F82F131F7049D800EE705D /* Itinerant.xcdatamodeld */,
+				965331601F704F7000F6F244 /* View */,
+				9653315F1F704F5D00F6F244 /* ViewControllers */,
 			);
 			path = Itinerant;
 			sourceTree = "<group>";
@@ -336,7 +352,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				96F82F151F7049D800EE705D /* Itinerant.xcdatamodeld in Sources */,
-				96F82F0F1F7049D800EE705D /* ViewController.swift in Sources */,
+				9653315E1F704F4700F6F244 /* LandingViewController.swift in Sources */,
 				96F82F0D1F7049D800EE705D /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -551,6 +567,7 @@
 				96F82F2B1F7049D800EE705D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		96F82F2C1F7049D800EE705D /* Build configuration list for PBXNativeTarget "ItinerantTests" */ = {
 			isa = XCConfigurationList;
@@ -559,6 +576,7 @@
 				96F82F2E1F7049D800EE705D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
