@@ -106,7 +106,7 @@ class User: NSObject {
   
   class func checkUserVerification(completion: @escaping (Bool) -> Swift.Void) {
     Auth.auth().currentUser?.reload(completion: { (_) in
-      let status = (Auth.auth()?.currentUser?.isEmailVerified)!
+      let status = (Auth.auth().currentUser?.isEmailVerified)!
       completion(status)
     })
   }
