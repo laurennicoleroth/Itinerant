@@ -8,6 +8,7 @@ target 'Itinerant' do
   # Pods for Itinerant
   pod 'GoogleMaps'
   pod 'GooglePlaces'
+  pod 'Firebase'
 
   target 'ItinerantTests' do
     inherit! :search_paths
