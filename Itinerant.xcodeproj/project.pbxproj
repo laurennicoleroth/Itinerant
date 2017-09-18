@@ -115,11 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				96F82F101F7049D800EE705D /* Main.storyboard */,
-				96F82F161F7049D800EE705D /* Assets.xcassets */,
 				96F82F181F7049D800EE705D /* LaunchScreen.storyboard */,
-				96F82F1B1F7049D800EE705D /* Info.plist */,
-				9653316C1F70661E00F6F244 /* GoogleService-Info.plist */,
-				96F82F131F7049D800EE705D /* Itinerant.xcdatamodeld */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -128,8 +124,20 @@
 			isa = PBXGroup;
 			children = (
 				965331671F705AA000F6F244 /* User.swift */,
+				96F82F131F7049D800EE705D /* Itinerant.xcdatamodeld */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		9653316E1F706B9900F6F244 /* Supporting */ = {
+			isa = PBXGroup;
+			children = (
+				9653316A1F705D3200F6F244 /* Helpers.swift */,
+				96F82F161F7049D800EE705D /* Assets.xcassets */,
+				96F82F1B1F7049D800EE705D /* Info.plist */,
+				9653316C1F70661E00F6F244 /* GoogleService-Info.plist */,
+			);
+			name = Supporting;
 			sourceTree = "<group>";
 		};
 		96F82F001F7049D800EE705D = {
@@ -159,7 +167,7 @@
 				965331691F705AB500F6F244 /* Models */,
 				965331601F704F7000F6F244 /* View */,
 				9653315F1F704F5D00F6F244 /* ViewControllers */,
-				9653316A1F705D3200F6F244 /* Helpers.swift */,
+				9653316E1F706B9900F6F244 /* Supporting */,
 			);
 			path = Itinerant;
 			sourceTree = "<group>";
