@@ -34,6 +34,8 @@ class PlacesViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
   
     mapView.settings.myLocationButton = true
     
