@@ -18,7 +18,7 @@ class Place {
       let marker = GMSMarker()
       marker.position = CLLocationCoordinate2DMake(place.coordinate.latitude, place.coordinate.longitude)
       marker.title = place.name
-      marker.icon = #imageLiteral(resourceName: "marker_normal")
+      marker.icon = #imageLiteral(resourceName: "locationPin")
       
       return marker
     }
