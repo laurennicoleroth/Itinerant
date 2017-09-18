@@ -4,10 +4,17 @@
 target 'Itinerant' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
+  
+  # Rx
+  pod 'RxCocoa'
+  pod 'RxSwift'
+  pod 'RxGoogleMaps'
 
-  # Pods for Itinerant
+  # Google Maps & Places
   pod 'GoogleMaps'
   pod 'GooglePlaces'
+  
+  # Firebase Auth, Data, Storage
   pod 'Firebase/Database'
   pod 'Firebase/Auth'
   pod 'Firebase/Storage'
