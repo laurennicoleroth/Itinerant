@@ -75,7 +75,7 @@
         <!--Welcome View Controller-->
         <scene sceneID="vFb-eD-Ety">
             <objects>
-                <viewController id="TY7-zn-Aby" customClass="WelcomeViewController" customModule="Itinerant" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Welcome" id="TY7-zn-Aby" customClass="WelcomeViewController" customModule="Itinerant" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="laE-O5-DCo"/>
                         <viewControllerLayoutGuide type="bottom" id="EtE-xJ-WQs"/>
@@ -165,7 +165,7 @@
         <!--Navigation View Controller-->
         <scene sceneID="0ik-Rk-w0l">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Qi1-3M-GaU" customClass="NavigationViewController" customModule="Itinerant" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="Navigation" automaticallyAdjustsScrollViewInsets="NO" id="Qi1-3M-GaU" customClass="NavigationViewController" customModule="Itinerant" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="eZd-9d-80L">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>

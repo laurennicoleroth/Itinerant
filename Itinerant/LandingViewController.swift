@@ -10,14 +10,15 @@ import UIKit
 
 class LandingViewController: UIViewController {
   
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    
-    // Do any additional setup after loading the view.
+  //MARK: Properties
+  override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+    get {
+      return UIInterfaceOrientationMask.portrait
+    }
   }
   
   //MARK: Push to relevant ViewController
-  func pushTo(viewController: ViewControllerType)  {
+  func pushTo(viewController: ViewController)  {
     switch viewController {
     case .conversations:
       let vc = self.storyboard?.instantiateViewController(withIdentifier: "Navigation") as! NavigationViewController
@@ -37,7 +38,7 @@ class LandingViewController: UIViewController {
       User.loginUser(withEmail: email, password: password, completion: { [weak weakSelf = self] (status) in
         DispatchQueue.main.async {
           if status == true {
-            //            weakSelf?.pushTo(viewController: .places)
+            weakSelf?.pushTo(viewController: .conversations)
           } else {
             weakSelf?.pushTo(viewController: .welcome)
           }
@@ -49,9 +50,8 @@ class LandingViewController: UIViewController {
     }
   }
   
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
+  override func viewDidLoad() {
+    super.viewDidLoad()
   }
   
 }

@@ -151,8 +151,8 @@
 			isa = PBXGroup;
 			children = (
 				96F82F0C1F7049D800EE705D /* AppDelegate.swift */,
-				965331601F704F7000F6F244 /* View */,
 				965331691F705AB500F6F244 /* Models */,
+				965331601F704F7000F6F244 /* View */,
 				9653315F1F704F5D00F6F244 /* ViewControllers */,
 			);
 			path = Itinerant;
