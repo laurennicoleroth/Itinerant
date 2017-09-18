@@ -135,10 +135,6 @@ class PlacesViewController: UIViewController {
     present(autocompleteController, animated: true, completion: nil)
   }
   
-  @IBAction func shareButtonTouched(_ sender: Any) {
-    performSegue(withIdentifier: "goToContactsSegue", sender: nil)
-  }
-  
   
   @IBAction func makeTripButtonTouched(_ sender: Any) {
     

@@ -98,6 +98,9 @@
                                         <state key="normal" title="Build Trip" backgroundImage="cellbackground">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="makeTripButtonTouched:" destination="Pug-01-Nyd" eventType="touchUpInside" id="00e-LY-btp"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
