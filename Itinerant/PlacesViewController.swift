@@ -98,10 +98,10 @@ class PlacesViewController: UIViewController {
       Observable.zip(s0, s1) { $0 }
         .subscribe(onNext: { (prev, cur) in
           if let marker = prev {
-            marker.icon = #imageLiteral(resourceName: "marker_normal")
+            marker.icon = #imageLiteral(resourceName: "locationPin")
           }
           if let marker = cur {
-            marker.icon = #imageLiteral(resourceName: "marker_selected")
+            marker.icon = #imageLiteral(resourceName: "locationPin")
           }
         })
         .addDisposableTo(disposeBag)
