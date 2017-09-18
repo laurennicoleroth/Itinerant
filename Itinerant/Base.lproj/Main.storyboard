@@ -89,7 +89,22 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J8g-Md-HhG" customClass="GMSMapView">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ODQ-PW-Oad">
+                                        <rect key="frame" x="112.5" y="555" width="150" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="gCi-VE-ygT"/>
+                                        </constraints>
+                                        <state key="normal" title="Build Trip" backgroundImage="cellbackground">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="ODQ-PW-Oad" secondAttribute="bottom" constant="8" id="76M-M0-nHk"/>
+                                    <constraint firstItem="ODQ-PW-Oad" firstAttribute="centerX" secondItem="J8g-Md-HhG" secondAttribute="centerX" id="v5F-YF-XAQ"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -550,6 +565,7 @@
     </scenes>
     <resources>
         <image name="button" width="60" height="20"/>
+        <image name="cellbackground" width="150" height="150"/>
         <image name="clouds" width="750" height="110"/>
         <image name="email" width="24" height="24"/>
         <image name="name" width="24" height="24"/>
