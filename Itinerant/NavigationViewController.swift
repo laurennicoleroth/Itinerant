@@ -1,5 +1,5 @@
 //
-//  PlacesViewController.swift
+//  NavigationViewController.swift
 //  Itinerant
 //
 //  Created by Lauren Nicole Roth on 9/18/17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PlacesViewController: UIViewController {
+class NavigationViewController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -20,10 +20,10 @@ class LandingViewController: UIViewController {
   func pushTo(viewController: ViewControllerType)  {
     switch viewController {
     case .conversations:
-      let vc = self.storyboard?.instantiateViewController(withIdentifier: "Navigation") as! NavVC
+      let vc = self.storyboard?.instantiateViewController(withIdentifier: "Navigation") as! NavigationViewController
       self.present(vc, animated: false, completion: nil)
     case .welcome:
-      let vc = self.storyboard?.instantiateViewController(withIdentifier: "Welcome") as! WelcomeVC
+      let vc = self.storyboard?.instantiateViewController(withIdentifier: "Welcome") as! WelcomeViewController
       self.present(vc, animated: false, completion: nil)
     }
   }
