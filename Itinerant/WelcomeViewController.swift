@@ -134,9 +134,16 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate, UINavigation
   @IBAction func register(_ sender: Any) {
     for item in self.inputFields {
       item.resignFirstResponder()
+      print("Item: ", item)
     }
     self.showLoading(state: true)
-    User.registerUser(withName: self.registerNameField.text!, email: self.registerEmailField.text!, password: self.registerPasswordField.text!, profilePic: self.profilePicView.image!) { [weak weakSelf = self] (status) in
+    
+    let name = self.registerNameField.text ?? "Lauren Roth"
+    let email = self.registerEmailField.text ?? "laurenroth@gmail.com"
+    let password = self.registerPasswordField.text ?? "spirit2634"
+    let profilePic = self.profilePicView.image ?? UIImage(named: "name")
+    
+    User.registerUser(withName: name, email: email, password: password, profilePic: self.profilePicView.image!) { [weak weakSelf = self] (status) in
       DispatchQueue.main.async {
         weakSelf?.showLoading(state: false)
         for item in self.inputFields {
