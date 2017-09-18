@@ -20,6 +20,8 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+  <key>NSLocationWhenInUseUsageDescription</key>
+  <string>We use your location as a starting point for making a trip.</string>
   <key>NSCameraUsageDescription</key>
   <string>Photos will be used for setting profile picture or sending to friends</string>
   <key>NSLocationUsageDescription</key>
