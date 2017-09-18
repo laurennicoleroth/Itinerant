@@ -41,16 +41,25 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="worldmap" translatesAutoresizingMaskIntoConstraints="NO" id="Wae-9j-dkl">
+                                <rect key="frame" x="0.0" y="58" width="375" height="165"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="165" id="QgC-7k-b4c"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="JAl-Ra-VNr" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="-16" id="LMq-7f-CFI"/>
                             <constraint firstItem="M8t-cC-TOi" firstAttribute="top" secondItem="wfE-iW-BMO" secondAttribute="bottom" constant="-4.5" id="Pid-2u-mch"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Wae-9j-dkl" secondAttribute="trailing" constant="-16" id="RhJ-K0-Qd5"/>
+                            <constraint firstItem="Wae-9j-dkl" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-16" id="TAy-2r-pDu"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="lsV-oB-Szg" secondAttribute="bottom" id="U6M-LY-hqj"/>
                             <constraint firstItem="lsV-oB-Szg" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="-64" id="YJK-nw-Tg2"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="JAl-Ra-VNr" secondAttribute="bottom" id="YRV-8K-fCL"/>
                             <constraint firstItem="lsV-oB-Szg" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="dSc-Ri-cr3"/>
                             <constraint firstItem="wfE-iW-BMO" firstAttribute="centerX" secondItem="lsV-oB-Szg" secondAttribute="centerX" constant="-5.5" id="gYV-Bk-ZbN"/>
+                            <constraint firstItem="Wae-9j-dkl" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="38" id="hak-z0-YEY"/>
                             <constraint firstItem="wfE-iW-BMO" firstAttribute="centerY" secondItem="lsV-oB-Szg" secondAttribute="centerY" constant="-12" id="klf-2f-VHn"/>
                             <constraint firstAttribute="trailing" secondItem="JAl-Ra-VNr" secondAttribute="trailing" constant="-16" id="pCH-4S-SAO"/>
                             <constraint firstAttribute="trailingMargin" secondItem="lsV-oB-Szg" secondAttribute="trailing" constant="-20" id="pz1-Ph-Ju5"/>
@@ -138,5 +147,6 @@
     <resources>
         <image name="background" width="375" height="667"/>
         <image name="clouds" width="750" height="110"/>
+        <image name="worldmap" width="720" height="375"/>
     </resources>
 </document>
