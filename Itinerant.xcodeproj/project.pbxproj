@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9639BD9A1F70770D004843D9 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9639BD991F70770D004843D9 /* Place.swift */; };
 		9653315E1F704F4700F6F244 /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9653315D1F704F4700F6F244 /* LandingViewController.swift */; };
 		965331621F70542B00F6F244 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965331611F70542B00F6F244 /* WelcomeViewController.swift */; };
 		965331641F7059CD00F6F244 /* PlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965331631F7059CD00F6F244 /* PlacesViewController.swift */; };
@@ -39,6 +40,7 @@
 		1233D62B74C44C2C3B95B945 /* Pods-ItinerantTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ItinerantTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ItinerantTests/Pods-ItinerantTests.debug.xcconfig"; sourceTree = "<group>"; };
 		3F2662452108EE3C4998DC22 /* Pods-ItinerantTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ItinerantTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ItinerantTests/Pods-ItinerantTests.release.xcconfig"; sourceTree = "<group>"; };
 		5BB729D1E717B48A1D1AC139 /* Pods-Itinerant.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Itinerant.release.xcconfig"; path = "Pods/Target Support Files/Pods-Itinerant/Pods-Itinerant.release.xcconfig"; sourceTree = "<group>"; };
+		9639BD991F70770D004843D9 /* Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		9653315D1F704F4700F6F244 /* LandingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
 		965331611F70542B00F6F244 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		965331631F7059CD00F6F244 /* PlacesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesViewController.swift; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				965331671F705AA000F6F244 /* User.swift */,
+				9639BD991F70770D004843D9 /* Place.swift */,
 				96F82F131F7049D800EE705D /* Itinerant.xcdatamodeld */,
 			);
 			name = Models;
@@ -398,6 +401,7 @@
 				96F551E61F70747600ED6856 /* RxGoogleMapsBridge.swift in Sources */,
 				96F82F0D1F7049D800EE705D /* AppDelegate.swift in Sources */,
 				965331681F705AA000F6F244 /* User.swift in Sources */,
+				9639BD9A1F70770D004843D9 /* Place.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
