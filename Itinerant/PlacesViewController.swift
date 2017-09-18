@@ -18,7 +18,6 @@ import CoreLocation
 class PlacesViewController: UIViewController {
   
   @IBOutlet weak var mapView: GMSMapView!
-  @IBOutlet weak var addPlaceButton: UIButton!
   
   let disposeBag = DisposeBag()
   let locationManager = CLLocationManager()
@@ -112,7 +111,7 @@ class PlacesViewController: UIViewController {
   
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
-    
+        
     centerTheMap(lat: 40.7416089 , lon: -73.9931664)
     
   }

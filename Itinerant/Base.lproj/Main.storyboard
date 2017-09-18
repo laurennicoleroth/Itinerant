@@ -75,7 +75,7 @@
             </objects>
             <point key="canvasLocation" x="940" y="790.25487256371821"/>
         </scene>
-        <!--Places View Controller-->
+        <!--Where To?-->
         <scene sceneID="UVV-fo-neA">
             <objects>
                 <viewController id="Pug-01-Nyd" customClass="PlacesViewController" customModule="Itinerant" customModuleProvider="target" sceneMemberID="viewController">
@@ -100,7 +100,14 @@
                             <constraint firstItem="rpf-6l-5c3" firstAttribute="top" secondItem="J8g-Md-HhG" secondAttribute="bottom" id="QUQ-Nu-FMB"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="O0B-Ry-ci8"/>
+                    <navigationItem key="navigationItem" title="Where To?" id="O0B-Ry-ci8">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Tpw-hd-wu5">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="addAPlaceTouched:" destination="Pug-01-Nyd" id="EnR-S5-uig"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="J8g-Md-HhG" id="lkK-D2-ZAZ"/>
                     </connections>
