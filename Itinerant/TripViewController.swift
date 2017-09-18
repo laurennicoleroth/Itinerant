@@ -15,7 +15,7 @@ import GoogleMaps
 class TripViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
   
   var placesArray : [Place]
-  var placeViewController: PlaceViewController? = nil
+  var placeViewController: PlaceDetailsViewController? = nil
   
   @IBOutlet weak var tableView: UITableView!
   
@@ -41,11 +41,6 @@ class TripViewController: UIViewController, UITableViewDelegate, UITableViewData
   
   func navbarSetup() {
     navigationItem.leftBarButtonItem = editButtonItem
-    
-    var colors = [UIColor]()
-    colors.append(UIColor(red: 247/255, green: 113/255, blue: 98/255, alpha: 1))
-    colors.append(UIColor(red: 221/255, green: 34/255, blue: 13/255, alpha: 1))
-    navigationController?.navigationBar.setGradientBackground(colors: colors)
     
     let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(insertNewObject(_:)))
     navigationItem.rightBarButtonItem = addButton
@@ -212,7 +207,7 @@ class TripViewController: UIViewController, UITableViewDelegate, UITableViewData
     if segue.identifier == "goToPlaceDetailsSegue" {
       if let indexPath = tableView.indexPathForSelectedRow {
         
-        let placeVC = segue.destination as! PlaceViewController
+        let placeVC = segue.destination as! PlaceDetailsViewController
         
         placeVC.place = placesArray[indexPath.row]
       }
