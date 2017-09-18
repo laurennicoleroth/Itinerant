@@ -24,7 +24,11 @@ class PlacesViewController: UIViewController {
   
   var places : [Place] = [] {
     didSet {
-      print("Place count is now", places.count)
+      if places.count > 0 {
+        self.title = "Where To Next?"
+      } else {
+        self.title = "Where To?"
+      }
     }
   }
   

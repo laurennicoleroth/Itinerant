@@ -21,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     UINavigationBar.appearance().setBackgroundImage(UIImage(named: "navigation")!.resizableImage(withCapInsets: UIEdgeInsetsMake(0, 0, 0, 0), resizingMode: .stretch), for: .default)
     UINavigationBar.appearance().isTranslucent = false
+    UINavigationBar.appearance().barTintColor = UIColor.white
     
     FirebaseApp.configure()
     
