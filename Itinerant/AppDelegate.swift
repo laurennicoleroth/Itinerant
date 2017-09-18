@@ -22,6 +22,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     FirebaseApp.configure()
     
+    if let path = Bundle.main.path(forResource: "Keys", ofType: "plist"),
+      let keys = NSDictionary(contentsOfFile: path),
+      let googleMapsKey = keys["googleMapsAPIKey"] as? String,
+      let googlePlacesKey = keys["googlePlacesAPIKey"] as? String
+    {
+      GMSServices.provideAPIKey(googleMapsKey)
+      GMSPlacesClient.provideAPIKey(googlePlacesKey)
+    }
+    
     return true
   }
 

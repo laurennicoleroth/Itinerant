@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9639BD9A1F70770D004843D9 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9639BD991F70770D004843D9 /* Place.swift */; };
+		9639BD9C1F7077AB004843D9 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9639BD9B1F7077AB004843D9 /* Keys.plist */; };
 		9653315E1F704F4700F6F244 /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9653315D1F704F4700F6F244 /* LandingViewController.swift */; };
 		965331621F70542B00F6F244 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965331611F70542B00F6F244 /* WelcomeViewController.swift */; };
 		965331641F7059CD00F6F244 /* PlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965331631F7059CD00F6F244 /* PlacesViewController.swift */; };
@@ -41,6 +42,7 @@
 		3F2662452108EE3C4998DC22 /* Pods-ItinerantTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ItinerantTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ItinerantTests/Pods-ItinerantTests.release.xcconfig"; sourceTree = "<group>"; };
 		5BB729D1E717B48A1D1AC139 /* Pods-Itinerant.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Itinerant.release.xcconfig"; path = "Pods/Target Support Files/Pods-Itinerant/Pods-Itinerant.release.xcconfig"; sourceTree = "<group>"; };
 		9639BD991F70770D004843D9 /* Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
+		9639BD9B1F7077AB004843D9 /* Keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
 		9653315D1F704F4700F6F244 /* LandingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
 		965331611F70542B00F6F244 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		965331631F7059CD00F6F244 /* PlacesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesViewController.swift; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 				96F82F1B1F7049D800EE705D /* Info.plist */,
 				9653316C1F70661E00F6F244 /* GoogleService-Info.plist */,
 				96F551E51F70747600ED6856 /* RxGoogleMapsBridge.swift */,
+				9639BD9B1F7077AB004843D9 /* Keys.plist */,
 			);
 			name = Supporting;
 			sourceTree = "<group>";
@@ -282,6 +285,7 @@
 				9653316D1F70661E00F6F244 /* GoogleService-Info.plist in Resources */,
 				96F82F171F7049D800EE705D /* Assets.xcassets in Resources */,
 				96F82F121F7049D800EE705D /* Main.storyboard in Resources */,
+				9639BD9C1F7077AB004843D9 /* Keys.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
