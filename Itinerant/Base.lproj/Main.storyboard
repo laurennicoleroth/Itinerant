@@ -34,10 +34,17 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clouds" translatesAutoresizingMaskIntoConstraints="NO" id="JAl-Ra-VNr">
                                 <rect key="frame" x="-16" y="557" width="407" height="110"/>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Let's plan a trip!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M8t-cC-TOi">
+                                <rect key="frame" x="129.5" y="323" width="116" height="19"/>
+                                <fontDescription key="fontDescription" name="Palatino-Italic" family="Palatino" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="JAl-Ra-VNr" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="-16" id="LMq-7f-CFI"/>
+                            <constraint firstItem="M8t-cC-TOi" firstAttribute="top" secondItem="wfE-iW-BMO" secondAttribute="bottom" constant="-4.5" id="Pid-2u-mch"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="lsV-oB-Szg" secondAttribute="bottom" id="U6M-LY-hqj"/>
                             <constraint firstItem="lsV-oB-Szg" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="-64" id="YJK-nw-Tg2"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="JAl-Ra-VNr" secondAttribute="bottom" id="YRV-8K-fCL"/>
@@ -46,6 +53,7 @@
                             <constraint firstItem="wfE-iW-BMO" firstAttribute="centerY" secondItem="lsV-oB-Szg" secondAttribute="centerY" constant="-12" id="klf-2f-VHn"/>
                             <constraint firstAttribute="trailing" secondItem="JAl-Ra-VNr" secondAttribute="trailing" constant="-16" id="pCH-4S-SAO"/>
                             <constraint firstAttribute="trailingMargin" secondItem="lsV-oB-Szg" secondAttribute="trailing" constant="-20" id="pz1-Ph-Ju5"/>
+                            <constraint firstItem="M8t-cC-TOi" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="s3s-fg-1GE"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="9eU-Ly-KPi"/>
