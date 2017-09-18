@@ -1,5 +1,5 @@
 //
-//  LandingViewController.swift
+//  WelcomeViewController.swift
 //  Itinerant
 //
 //  Created by Lauren Nicole Roth on 9/18/17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LandingViewController: UIViewController {
+class WelcomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

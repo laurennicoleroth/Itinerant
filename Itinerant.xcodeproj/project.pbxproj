@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9653315E1F704F4700F6F244 /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9653315D1F704F4700F6F244 /* LandingViewController.swift */; };
+		965331621F70542B00F6F244 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965331611F70542B00F6F244 /* WelcomeViewController.swift */; };
 		96F82F0D1F7049D800EE705D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F82F0C1F7049D800EE705D /* AppDelegate.swift */; };
 		96F82F121F7049D800EE705D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96F82F101F7049D800EE705D /* Main.storyboard */; };
 		96F82F151F7049D800EE705D /* Itinerant.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 96F82F131F7049D800EE705D /* Itinerant.xcdatamodeld */; };
@@ -33,6 +34,7 @@
 		3F2662452108EE3C4998DC22 /* Pods-ItinerantTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ItinerantTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ItinerantTests/Pods-ItinerantTests.release.xcconfig"; sourceTree = "<group>"; };
 		5BB729D1E717B48A1D1AC139 /* Pods-Itinerant.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Itinerant.release.xcconfig"; path = "Pods/Target Support Files/Pods-Itinerant/Pods-Itinerant.release.xcconfig"; sourceTree = "<group>"; };
 		9653315D1F704F4700F6F244 /* LandingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
+		965331611F70542B00F6F244 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		96F82F091F7049D800EE705D /* Itinerant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Itinerant.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96F82F0C1F7049D800EE705D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		96F82F111F7049D800EE705D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				9653315D1F704F4700F6F244 /* LandingViewController.swift */,
+				965331611F70542B00F6F244 /* WelcomeViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -352,6 +355,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				96F82F151F7049D800EE705D /* Itinerant.xcdatamodeld in Sources */,
+				965331621F70542B00F6F244 /* WelcomeViewController.swift in Sources */,
 				9653315E1F704F4700F6F244 /* LandingViewController.swift in Sources */,
 				96F82F0D1F7049D800EE705D /* AppDelegate.swift in Sources */,
 			);
