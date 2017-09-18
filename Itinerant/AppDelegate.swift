@@ -9,6 +9,8 @@
 import UIKit
 import CoreData
 import Firebase
+import GoogleMaps
+import GooglePlaces
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -21,6 +23,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     UINavigationBar.appearance().isTranslucent = false
     
     FirebaseApp.configure()
+    
+    if let path = Bundle.main.path(forResource: "Keys", ofType: "plist"),
+      let keys = NSDictionary(contentsOfFile: path),
+      let googleMapsKey = keys["googleMapsAPIKey"] as? String,
+      let googlePlacesKey = keys["googlePlacesAPIKey"] as? String
+    {
+      GMSServices.provideAPIKey(googleMapsKey)
+      GMSPlacesClient.provideAPIKey(googlePlacesKey)
+    }
     
     return true
   }
