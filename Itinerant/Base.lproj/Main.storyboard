@@ -23,22 +23,32 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="lsV-oB-Szg">
-                                <rect key="frame" x="-4" y="0.0" width="383" height="667"/>
+                                <rect key="frame" x="-4" y="-44" width="383" height="711"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Itinerant" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wfE-iW-BMO">
-                                <rect key="frame" x="98.5" y="293.5" width="167" height="56"/>
+                                <rect key="frame" x="98.5" y="271.5" width="167" height="56"/>
                                 <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="47"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="default_marker.png" translatesAutoresizingMaskIntoConstraints="NO" id="vla-vE-Jh1">
+                                <rect key="frame" x="119" y="262" width="25" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clouds" translatesAutoresizingMaskIntoConstraints="NO" id="JAl-Ra-VNr">
+                                <rect key="frame" x="0.0" y="557" width="375" height="110"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="JAl-Ra-VNr" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-16" id="LMq-7f-CFI"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="lsV-oB-Szg" secondAttribute="bottom" id="U6M-LY-hqj"/>
                             <constraint firstItem="lsV-oB-Szg" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="-64" id="YJK-nw-Tg2"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="JAl-Ra-VNr" secondAttribute="bottom" id="YRV-8K-fCL"/>
                             <constraint firstItem="lsV-oB-Szg" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="dSc-Ri-cr3"/>
                             <constraint firstItem="wfE-iW-BMO" firstAttribute="centerX" secondItem="lsV-oB-Szg" secondAttribute="centerX" constant="-5.5" id="gYV-Bk-ZbN"/>
                             <constraint firstItem="wfE-iW-BMO" firstAttribute="centerY" secondItem="lsV-oB-Szg" secondAttribute="centerY" constant="-12" id="klf-2f-VHn"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="JAl-Ra-VNr" secondAttribute="trailing" constant="-16" id="pCH-4S-SAO"/>
                             <constraint firstAttribute="trailingMargin" secondItem="lsV-oB-Szg" secondAttribute="trailing" constant="-20" id="pz1-Ph-Ju5"/>
                         </constraints>
                     </view>
@@ -75,5 +85,7 @@
     </scenes>
     <resources>
         <image name="background" width="375" height="667"/>
+        <image name="clouds" width="750" height="110"/>
+        <image name="default_marker.png" width="21" height="38"/>
     </resources>
 </document>
