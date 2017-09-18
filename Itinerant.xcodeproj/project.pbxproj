@@ -13,6 +13,7 @@
 		965331661F705A2E00F6F244 /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965331651F705A2E00F6F244 /* NavigationViewController.swift */; };
 		965331681F705AA000F6F244 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965331671F705AA000F6F244 /* User.swift */; };
 		9653316B1F705D3200F6F244 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9653316A1F705D3200F6F244 /* Helpers.swift */; };
+		9653316D1F70661E00F6F244 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9653316C1F70661E00F6F244 /* GoogleService-Info.plist */; };
 		96F82F0D1F7049D800EE705D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F82F0C1F7049D800EE705D /* AppDelegate.swift */; };
 		96F82F121F7049D800EE705D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96F82F101F7049D800EE705D /* Main.storyboard */; };
 		96F82F151F7049D800EE705D /* Itinerant.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 96F82F131F7049D800EE705D /* Itinerant.xcdatamodeld */; };
@@ -43,6 +44,7 @@
 		965331651F705A2E00F6F244 /* NavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationViewController.swift; sourceTree = "<group>"; };
 		965331671F705AA000F6F244 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		9653316A1F705D3200F6F244 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		9653316C1F70661E00F6F244 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		96F82F091F7049D800EE705D /* Itinerant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Itinerant.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96F82F0C1F7049D800EE705D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		96F82F111F7049D800EE705D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 				96F82F161F7049D800EE705D /* Assets.xcassets */,
 				96F82F181F7049D800EE705D /* LaunchScreen.storyboard */,
 				96F82F1B1F7049D800EE705D /* Info.plist */,
+				9653316C1F70661E00F6F244 /* GoogleService-Info.plist */,
 				96F82F131F7049D800EE705D /* Itinerant.xcdatamodeld */,
 			);
 			name = View;
@@ -262,6 +265,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				96F82F1A1F7049D800EE705D /* LaunchScreen.storyboard in Resources */,
+				9653316D1F70661E00F6F244 /* GoogleService-Info.plist in Resources */,
 				96F82F171F7049D800EE705D /* Assets.xcassets in Resources */,
 				96F82F121F7049D800EE705D /* Main.storyboard in Resources */,
 			);
