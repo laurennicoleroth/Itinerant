@@ -239,9 +239,13 @@ class TripViewController: UIViewController, UITableViewDelegate, UITableViewData
   }
   
   @IBAction func clearTripTouched(_ sender: Any) {
+    
     for place in placeObjects {
       deletePlace(place: place)
     }
+    
+    placeObjects = []
+    tableView.reloadData()
   }
   
   func deletePlace(place: NSManagedObject) {
