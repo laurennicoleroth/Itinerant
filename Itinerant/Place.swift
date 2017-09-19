@@ -9,6 +9,7 @@
 import Foundation
 import GooglePlaces
 import GoogleMaps
+import SwiftyJSON
 
 class Place {
 
@@ -119,13 +120,7 @@ class PlaceJSONParser: NSObject {
             let latitude  = location["lat"],
             let longitude = location["lng"]{
             
-            resultPlaces.append(Place(name:name,
-                                      rating:rating,
-                                      latitude:latitude.doubleValue,
-                                      longitude:longitude.doubleValue,
-                                      iconName:icon,
-                                      placeID:placeID,
-                                      photoReference:photoReference as! String))
+            //resultPlaces.append()
           }
           
         }
@@ -138,7 +133,7 @@ class PlaceJSONParser: NSObject {
     return resultPlaces
   }
   
-  static func createFromDetails(_ incomingJSON: SwiftyJSON.JSON, place:inout Place?) {
+  static func createFromDetails(_ incomingJSON: SwiftyJSON.JSON, place: inout Place?) {
     
     
     let details = incomingJSON["result"].dictionaryObject
@@ -152,7 +147,7 @@ class PlaceJSONParser: NSObject {
       
       if let priceLevel = details["price_level"]{
         //print(priceLevel)
-        place?.priceLevel = priceLevel.doubleValue
+//        place?.priceLevel = priceLevel.doubleValue
       }
       
       if let address = details["formatted_address"]{
