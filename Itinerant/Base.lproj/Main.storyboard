@@ -91,15 +91,30 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ODQ-PW-Oad">
-                                <rect key="frame" x="112" y="617" width="150" height="40"/>
+                                <rect key="frame" x="26" y="617" width="100" height="40"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="gCi-VE-ygT"/>
+                                    <constraint firstAttribute="height" constant="40" id="NsB-BZ-Pdt"/>
+                                    <constraint firstAttribute="width" constant="100" id="RZF-Ob-bUl"/>
                                 </constraints>
                                 <state key="normal" title="Build Trip" backgroundImage="cellbackground">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="makeTripButtonTouched:" destination="Pug-01-Nyd" eventType="touchUpInside" id="00e-LY-btp"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ODK-wn-KOu">
+                                <rect key="frame" x="249" y="617" width="100" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="Ho6-0V-YEw"/>
+                                    <constraint firstAttribute="height" constant="40" id="edW-TD-HD6"/>
+                                </constraints>
+                                <state key="normal" title="Clear Trip" backgroundImage="navigation">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="clearTripTouched:" destination="NSu-Wz-oIh" eventType="touchUpInside" id="5Fo-CE-1py"/>
+                                    <action selector="clearTripTouched:" destination="Pug-01-Nyd" eventType="touchUpInside" id="NJf-PY-7cs"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k9j-Cp-587">
@@ -143,13 +158,15 @@
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="J8g-Md-HhG" secondAttribute="trailing" constant="-16" id="7qj-HH-3lC"/>
                             <constraint firstItem="J8g-Md-HhG" firstAttribute="top" secondItem="0gr-12-fUq" secondAttribute="bottom" id="9Pr-xK-9Ds"/>
-                            <constraint firstItem="rpf-6l-5c3" firstAttribute="top" secondItem="ODQ-PW-Oad" secondAttribute="bottom" constant="10" id="G2f-k5-pZS"/>
+                            <constraint firstItem="rpf-6l-5c3" firstAttribute="top" secondItem="ODK-wn-KOu" secondAttribute="bottom" constant="10" id="CNC-wl-4Kl"/>
                             <constraint firstItem="rpf-6l-5c3" firstAttribute="top" secondItem="k9j-Cp-587" secondAttribute="bottom" id="H5r-gF-K2t"/>
-                            <constraint firstItem="ODQ-PW-Oad" firstAttribute="centerX" secondItem="7fo-cq-TwM" secondAttribute="centerX" id="KlR-N4-L57"/>
                             <constraint firstItem="k9j-Cp-587" firstAttribute="leading" secondItem="7fo-cq-TwM" secondAttribute="leadingMargin" constant="-16" id="LYg-yY-jXD"/>
                             <constraint firstItem="J8g-Md-HhG" firstAttribute="leading" secondItem="7fo-cq-TwM" secondAttribute="leadingMargin" constant="-16" id="N8M-8j-DNM"/>
                             <constraint firstItem="rpf-6l-5c3" firstAttribute="top" secondItem="J8g-Md-HhG" secondAttribute="bottom" id="QUQ-Nu-FMB"/>
+                            <constraint firstItem="ODQ-PW-Oad" firstAttribute="leading" secondItem="7fo-cq-TwM" secondAttribute="leadingMargin" constant="10" id="iU0-yV-4s2"/>
                             <constraint firstItem="k9j-Cp-587" firstAttribute="top" secondItem="0gr-12-fUq" secondAttribute="bottom" id="kDU-Jb-Rf5"/>
+                            <constraint firstItem="rpf-6l-5c3" firstAttribute="top" secondItem="ODQ-PW-Oad" secondAttribute="bottom" constant="10" id="m95-bt-ubl"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ODK-wn-KOu" secondAttribute="trailing" constant="10" id="xRY-8X-0QF"/>
                             <constraint firstAttribute="trailingMargin" secondItem="k9j-Cp-587" secondAttribute="trailing" constant="-16" id="xY8-DM-xH9"/>
                         </constraints>
                     </view>

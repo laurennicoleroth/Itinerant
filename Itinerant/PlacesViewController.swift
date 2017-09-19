@@ -286,6 +286,37 @@ class PlacesViewController: UIViewController, CLLocationManagerDelegate {
     return alertController
   }
   
+  @IBAction func clearTripTouched(_ sender: Any) {
+    guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+      return
+    }
+    
+    let managedContext = appDelegate.persistentContainer.viewContext
+    let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "ManagedPlace")
+    
+    let result = try? managedContext.fetch(fetchRequest)
+    let resultData = result as! [ManagedPlace]
+    
+    for object in resultData {
+      managedContext.delete(object)
+      
+      placeObjects = self.placeObjects.filter { $0 != object }
+      
+      mapView.clear()
+    }
+    
+    do {
+      try managedContext.save()
+      print("saved!")
+    } catch let error as NSError  {
+      print("Could not save \(error), \(error.userInfo)")
+    } catch {
+      
+    }
+    
+  }
+  
+  
   //Location manager 
   func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
     if let location = locations.first {
