@@ -224,8 +224,6 @@ extension PlacesViewController: GMSAutocompleteViewControllerDelegate {
       
       newPlace.savePlace()
       
-//      self.places.append(newPlace)
-      
       self.centerTheMap(lat: marker.position.latitude, lon: marker.position.longitude)
     })
   }
