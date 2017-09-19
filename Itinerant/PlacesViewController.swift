@@ -16,23 +16,56 @@ import GooglePlaces
 import CoreLocation
 import CoreData
 
-class PlacesViewController: UIViewController {
+class PlacesViewController: UIViewController, CLLocationManagerDelegate {
   
   @IBOutlet weak var mapView: GMSMapView!
   @IBOutlet weak var buildTripButton: UIButton!
+  @IBOutlet var getStartedView: UIView!
   
   let disposeBag = DisposeBag()
   let locationManager = CLLocationManager()
   
-  var placeObjects : [NSManagedObject] = []
-
+  var placeObjects : [NSManagedObject] = [] {
+    didSet {
+      centerOnLastAdded()
+    }
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    addMarkersFromCoreData()
+    locationManager.delegate = self
+  
+    addReactiveMapHandlers()
     
     self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
+    
+    placeObjects = fetchPlaces()
+    
+    
+    if placeObjects.count > 0 {
+      
+      getStartedView.isHidden = true
+      
+      centerOnLastAdded()
+      
+      addMarkersToMap(places: placeObjects)
+    } else {
+       locationManager.requestLocation()
+    }
+    
+  }
   
+  func centerOnLastAdded() {
+    let last = placeObjects.last
+    let latitude = last?.value(forKey: "latitude") as! Double
+    let longitude = last?.value(forKey: "longitude") as! Double
+    
+    centerTheMap(lat: latitude, lon: longitude)
+    
+  }
+  
+  func addReactiveMapHandlers() {
     mapView.settings.myLocationButton = true
     
     let startLocationManager = mapView.rx.didTapMyLocationButton.take(1).publish()
@@ -108,13 +141,11 @@ class PlacesViewController: UIViewController {
         })
         .addDisposableTo(disposeBag)
     }
-    
   }
   
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
-        
-    centerTheMap(lat: 40.7416089 , lon: -73.9931664)
+    
     
   }
   
@@ -132,8 +163,10 @@ class PlacesViewController: UIViewController {
     
     for object in resultData {
       managedContext.delete(object)
+   
+      placeObjects = self.placeObjects.filter { $0 != object }
     }
-    
+
     do {
       try managedContext.save()
       print("saved!")
@@ -143,38 +176,25 @@ class PlacesViewController: UIViewController {
       
     }
   }
-
-  func addMarkersFromCoreData() {
+  
+  func fetchPlaces() -> [NSManagedObject] {
     guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-      return
+      return []
     }
     
     let managedContext = appDelegate.persistentContainer.viewContext
     let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "ManagedPlace")
     
     do {
-      placeObjects = try managedContext.fetch(fetchRequest)
+      let places = try managedContext.fetch(fetchRequest)
       
-      print("Retrieved ", placeObjects.count, " places")
-      if placeObjects.count > 1 {
-        buildTripButton.isHidden = false
-      }
-      
-      for placeObject in placeObjects {
-        addMarkerToMap(name: placeObject.value(forKey: "name") as! String, latitude: placeObject.value(forKey: "latitude") as! Double, longitude: placeObject.value(forKey: "longitude") as! Double)
-      }
+      return places
+
     } catch let error as NSError {
       print("Could not fetch. \(error), \(error.userInfo)")
+      return []
     }
-  }
-  
-  func addMarkerToMap(name: String, latitude: Double, longitude: Double) {
-    print("Adding marker to the map ", name, latitude, longitude)
-    let marker = GMSMarker()
-    marker.position = CLLocationCoordinate2DMake(latitude, longitude)
-    marker.title = name
-    marker.icon = UIImage(named: "locationPin")
-    marker.map = mapView
+
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -184,15 +204,48 @@ class PlacesViewController: UIViewController {
   }
   
   @IBAction func addAPlaceTouched(_ sender: Any) {
-    let autocompleteController = GMSAutocompleteViewController()
-    autocompleteController.delegate = self
-    present(autocompleteController, animated: true, completion: nil)
+    presentAutocomplete()
+  }
+  
+  @IBAction func letsBeginTouched(_ sender: Any) {
+    
+    presentAutocomplete()
+    
+    getStartedView.isHidden = true
   }
   
   @IBAction func makeTripButtonTouched(_ sender: Any) {
     
     performSegue(withIdentifier: "buildTripSegue", sender: nil)
     
+  }
+  
+  func presentAutocomplete() {
+    let autocompleteController = GMSAutocompleteViewController()
+    autocompleteController.delegate = self
+    present(autocompleteController, animated: true, completion: nil)
+  }
+  
+  func addMarkerToMap(name: String, address: String, latitude: Double, longitude: Double) {
+    let position = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+    let marker = GMSMarker(position: position)
+    marker.title = name
+    marker.icon = UIImage(named: "locationPin")
+    marker.snippet = address
+    marker.map = mapView
+    
+    centerTheMap(lat: latitude, lon: longitude)
+  }
+  
+  func addMarkersToMap(places: [NSManagedObject]) {
+    for place in places {
+      let latitude = place.value(forKey: "latitude") as! Double
+      let longitude = place.value(forKey: "longitude") as! Double
+      let name = place.value(forKey: "name") as! String
+      let address = place.value(forKey: "address") as! String
+      
+      addMarkerToMap(name: name, address: address, latitude: latitude, longitude: longitude)
+    }
   }
   
   func centerTheMap(lat : Double, lon: Double) {
@@ -202,12 +255,12 @@ class PlacesViewController: UIViewController {
     mapView.camera = camera
   }
   
-  func highlightStartingPoint() {
+  func highlightStartingPoint(latitude: Double, longitude: Double) {
     let circle = GMSCircle()
     circle.title = "Circle"
     circle.radius = 200
     circle.isTappable = true
-//    circle.position = (places.first?.marker.position)!
+        circle.position = CLLocationCoordinate2DMake(latitude, longitude)
     circle.fillColor = UIColor.green.withAlphaComponent(0.2)
     circle.strokeColor = UIColor.green.withAlphaComponent(0.8)
     circle.strokeWidth = 4
@@ -236,6 +289,17 @@ class PlacesViewController: UIViewController {
     return alertController
   }
   
+  //Location manager 
+  func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    if let location = locations.first {
+      centerTheMap(lat: location.coordinate.latitude, lon: location.coordinate.longitude)
+    }
+  }
+  
+  func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+    print("Failed to find user's location: \(error.localizedDescription)")
+  }
+  
 }
 
 extension PlacesViewController: GMSAutocompleteViewControllerDelegate {
@@ -255,7 +319,7 @@ extension PlacesViewController: GMSAutocompleteViewControllerDelegate {
     })
   }
   
- 
+  
   
   func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
     // TODO: handle the error.
