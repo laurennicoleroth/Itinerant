@@ -23,16 +23,20 @@ class PlaceDetailsViewController: UIViewController, GMSMapViewDelegate{
     
     super.viewDidLoad()
     
+    self.title = place?.name
+    
     placeNameLabel.text = place?.name
     addressLabel.text = place?.address
     
-    let center = CLLocationCoordinate2D(latitude: (place?.latitude)!, longitude: (place?.longitude)!)
+    if let center : CLLocationCoordinate2D? = CLLocationCoordinate2D(latitude: (place?.latitude)!, longitude: (place?.longitude)!) {
+      let camera = GMSCameraPosition.camera(withLatitude: (center?.latitude)!, longitude: (center?.longitude)!, zoom: 16, bearing: 30, viewingAngle: 45)
+      mapView.camera = camera
+      
+      let marker = place?.marker
+      marker?.map = mapView
+    }
     
-    let camera = GMSCameraPosition.camera(withLatitude: center.latitude, longitude: center.longitude, zoom: 14, bearing: 30, viewingAngle: 45)
-    mapView.camera = camera
-    
-    let marker = place?.marker
-    marker?.map = mapView
+   
     
   }
   
