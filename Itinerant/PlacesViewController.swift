@@ -18,6 +18,7 @@ import CoreLocation
 class PlacesViewController: UIViewController {
   
   @IBOutlet weak var mapView: GMSMapView!
+  @IBOutlet weak var buildTripButton: UIButton!
   
   let disposeBag = DisposeBag()
   let locationManager = CLLocationManager()
@@ -26,14 +27,18 @@ class PlacesViewController: UIViewController {
     didSet {
       if places.count > 0 {
         self.title = "Where To Next?"
+        self.buildTripButton.isHidden = false
       } else {
         self.title = "Where To?"
+        self.buildTripButton.isHidden = true
       }
     }
   }
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    self.buildTripButton.isHidden = true
     
     self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
   
@@ -123,9 +128,9 @@ class PlacesViewController: UIViewController {
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    if segue.identifier == "goToTripSegue" {
-//      let destinationVC = segue.destination as! TripViewController
-//      destinationVC.placesArray = places
+    if segue.identifier == "buildTripSegue" {
+      let destinationVC = segue.destination as! TripViewController
+      destinationVC.places = places
     }
   }
   
@@ -138,7 +143,8 @@ class PlacesViewController: UIViewController {
   
   @IBAction func makeTripButtonTouched(_ sender: Any) {
     
-    performSegue(withIdentifier: "goToTripSegue", sender: nil)
+    performSegue(withIdentifier: "buildTripSegue", sender: nil)
+    
   }
   
   

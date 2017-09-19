@@ -16,6 +16,10 @@
 		965331681F705AA000F6F244 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965331671F705AA000F6F244 /* User.swift */; };
 		9653316B1F705D3200F6F244 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9653316A1F705D3200F6F244 /* Helpers.swift */; };
 		9653316D1F70661E00F6F244 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9653316C1F70661E00F6F244 /* GoogleService-Info.plist */; };
+		965668991F7091F40014AB06 /* TripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965668981F7091F40014AB06 /* TripViewController.swift */; };
+		9656689B1F7092580014AB06 /* PlaceDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9656689A1F7092580014AB06 /* PlaceDetailsViewController.swift */; };
+		965668A11F70938C0014AB06 /* PlaceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9656689F1F70938C0014AB06 /* PlaceTableViewCell.swift */; };
+		965668A21F70938C0014AB06 /* PlaceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 965668A01F70938C0014AB06 /* PlaceTableViewCell.xib */; };
 		96F551E61F70747600ED6856 /* RxGoogleMapsBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F551E51F70747600ED6856 /* RxGoogleMapsBridge.swift */; };
 		96F82F0D1F7049D800EE705D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F82F0C1F7049D800EE705D /* AppDelegate.swift */; };
 		96F82F121F7049D800EE705D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96F82F101F7049D800EE705D /* Main.storyboard */; };
@@ -50,6 +54,10 @@
 		965331671F705AA000F6F244 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		9653316A1F705D3200F6F244 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		9653316C1F70661E00F6F244 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		965668981F7091F40014AB06 /* TripViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripViewController.swift; sourceTree = "<group>"; };
+		9656689A1F7092580014AB06 /* PlaceDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceDetailsViewController.swift; sourceTree = "<group>"; };
+		9656689F1F70938C0014AB06 /* PlaceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceTableViewCell.swift; sourceTree = "<group>"; };
+		965668A01F70938C0014AB06 /* PlaceTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlaceTableViewCell.xib; sourceTree = "<group>"; };
 		96F551E51F70747600ED6856 /* RxGoogleMapsBridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxGoogleMapsBridge.swift; sourceTree = "<group>"; };
 		96F82F091F7049D800EE705D /* Itinerant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Itinerant.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96F82F0C1F7049D800EE705D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -111,8 +119,10 @@
 			children = (
 				9653315D1F704F4700F6F244 /* LandingViewController.swift */,
 				965331611F70542B00F6F244 /* WelcomeViewController.swift */,
-				965331631F7059CD00F6F244 /* PlacesViewController.swift */,
 				965331651F705A2E00F6F244 /* NavigationViewController.swift */,
+				965331631F7059CD00F6F244 /* PlacesViewController.swift */,
+				965668981F7091F40014AB06 /* TripViewController.swift */,
+				9656689A1F7092580014AB06 /* PlaceDetailsViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -149,6 +159,15 @@
 			name = Supporting;
 			sourceTree = "<group>";
 		};
+		9656689E1F7093510014AB06 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				9656689F1F70938C0014AB06 /* PlaceTableViewCell.swift */,
+				965668A01F70938C0014AB06 /* PlaceTableViewCell.xib */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
 		96F82F001F7049D800EE705D = {
 			isa = PBXGroup;
 			children = (
@@ -176,6 +195,7 @@
 				965331691F705AB500F6F244 /* Models */,
 				965331601F704F7000F6F244 /* View */,
 				9653315F1F704F5D00F6F244 /* ViewControllers */,
+				9656689E1F7093510014AB06 /* Cells */,
 				9653316E1F706B9900F6F244 /* Supporting */,
 			);
 			path = Itinerant;
@@ -286,6 +306,7 @@
 				96F82F171F7049D800EE705D /* Assets.xcassets in Resources */,
 				96F82F121F7049D800EE705D /* Main.storyboard in Resources */,
 				9639BD9C1F7077AB004843D9 /* Keys.plist in Resources */,
+				965668A21F70938C0014AB06 /* PlaceTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -400,8 +421,11 @@
 				96F82F151F7049D800EE705D /* Itinerant.xcdatamodeld in Sources */,
 				965331621F70542B00F6F244 /* WelcomeViewController.swift in Sources */,
 				9653316B1F705D3200F6F244 /* Helpers.swift in Sources */,
+				965668A11F70938C0014AB06 /* PlaceTableViewCell.swift in Sources */,
 				965331641F7059CD00F6F244 /* PlacesViewController.swift in Sources */,
 				9653315E1F704F4700F6F244 /* LandingViewController.swift in Sources */,
+				9656689B1F7092580014AB06 /* PlaceDetailsViewController.swift in Sources */,
+				965668991F7091F40014AB06 /* TripViewController.swift in Sources */,
 				96F551E61F70747600ED6856 /* RxGoogleMapsBridge.swift in Sources */,
 				96F82F0D1F7049D800EE705D /* AppDelegate.swift in Sources */,
 				965331681F705AA000F6F244 /* User.swift in Sources */,

@@ -89,31 +89,27 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J8g-Md-HhG" customClass="GMSMapView">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ODQ-PW-Oad">
-                                        <rect key="frame" x="112.5" y="555" width="150" height="40"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="gCi-VE-ygT"/>
-                                        </constraints>
-                                        <state key="normal" title="Build Trip" backgroundImage="cellbackground">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="makeTripButtonTouched:" destination="Pug-01-Nyd" eventType="touchUpInside" id="00e-LY-btp"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="ODQ-PW-Oad" secondAttribute="bottom" constant="8" id="76M-M0-nHk"/>
-                                    <constraint firstItem="ODQ-PW-Oad" firstAttribute="centerX" secondItem="J8g-Md-HhG" secondAttribute="centerX" id="v5F-YF-XAQ"/>
-                                </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ODQ-PW-Oad">
+                                <rect key="frame" x="112" y="617" width="150" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="gCi-VE-ygT"/>
+                                </constraints>
+                                <state key="normal" title="Build Trip" backgroundImage="cellbackground">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="makeTripButtonTouched:" destination="Pug-01-Nyd" eventType="touchUpInside" id="00e-LY-btp"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="J8g-Md-HhG" secondAttribute="trailing" constant="-16" id="7qj-HH-3lC"/>
                             <constraint firstItem="J8g-Md-HhG" firstAttribute="top" secondItem="0gr-12-fUq" secondAttribute="bottom" id="9Pr-xK-9Ds"/>
+                            <constraint firstItem="rpf-6l-5c3" firstAttribute="top" secondItem="ODQ-PW-Oad" secondAttribute="bottom" constant="10" id="G2f-k5-pZS"/>
+                            <constraint firstItem="ODQ-PW-Oad" firstAttribute="centerX" secondItem="7fo-cq-TwM" secondAttribute="centerX" id="KlR-N4-L57"/>
                             <constraint firstItem="J8g-Md-HhG" firstAttribute="leading" secondItem="7fo-cq-TwM" secondAttribute="leadingMargin" constant="-16" id="N8M-8j-DNM"/>
                             <constraint firstItem="rpf-6l-5c3" firstAttribute="top" secondItem="J8g-Md-HhG" secondAttribute="bottom" id="QUQ-Nu-FMB"/>
                         </constraints>
@@ -127,19 +123,87 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="buildTripButton" destination="ODQ-PW-Oad" id="xdO-4D-f7s"/>
                         <outlet property="mapView" destination="J8g-Md-HhG" id="lkK-D2-ZAZ"/>
+                        <segue destination="NSu-Wz-oIh" kind="show" identifier="buildTripSegue" id="WAy-k1-dp8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eFy-sS-VfR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3149.5999999999999" y="789.35532233883066"/>
         </scene>
+        <!--Trip View Controller-->
+        <scene sceneID="d9R-PE-ajJ">
+            <objects>
+                <viewController id="NSu-Wz-oIh" customClass="TripViewController" customModule="Itinerant" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dOB-Xa-2X1"/>
+                        <viewControllerLayoutGuide type="bottom" id="qUW-qN-jjF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="4pd-B2-sk0">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ncs-II-Nhf">
+                                <rect key="frame" x="0.0" y="72" width="375" height="595"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PlaceCell" id="gQj-0S-y5S" customClass="PlaceTableViewCell" customModule="Itinerant" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gQj-0S-y5S" id="hnm-cT-SNI">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="NSu-Wz-oIh" id="pK8-Sf-WuW"/>
+                                    <outlet property="delegate" destination="NSu-Wz-oIh" id="tq3-fb-FI0"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ncs-II-Nhf" firstAttribute="top" secondItem="dOB-Xa-2X1" secondAttribute="bottom" constant="8" symbolic="YES" id="A1e-mx-etc"/>
+                            <constraint firstItem="qUW-qN-jjF" firstAttribute="top" secondItem="ncs-II-Nhf" secondAttribute="bottom" id="J6b-aX-fEb"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ncs-II-Nhf" secondAttribute="trailing" constant="-16" id="UVG-h5-ZDo"/>
+                            <constraint firstItem="ncs-II-Nhf" firstAttribute="leading" secondItem="4pd-B2-sk0" secondAttribute="leadingMargin" constant="-16" id="XIC-Ec-ac1"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="ncs-II-Nhf" id="7LP-XM-OTW"/>
+                        <segue destination="k8I-yC-Mob" kind="show" identifier="goToPlaceDetailsSegue" id="oWb-m1-2dz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Kzh-Y4-xmT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3864.8000000000002" y="795.6521739130435"/>
+        </scene>
+        <!--Place Details View Controller-->
+        <scene sceneID="Y8g-Gz-tQ0">
+            <objects>
+                <viewController id="k8I-yC-Mob" customClass="PlaceDetailsViewController" customModule="Itinerant" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="3Xs-uI-VRc"/>
+                        <viewControllerLayoutGuide type="bottom" id="txX-j0-I48"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="CAF-qV-0C5">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fc4-e0-Aql" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4545" y="797"/>
+        </scene>
         <!--Navigation View Controller-->
         <scene sceneID="0ik-Rk-w0l">
             <objects>
                 <navigationController storyboardIdentifier="Navigation" automaticallyAdjustsScrollViewInsets="NO" id="Qi1-3M-GaU" customClass="NavigationViewController" customModule="Itinerant" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="eZd-9d-80L">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="eZd-9d-80L">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
