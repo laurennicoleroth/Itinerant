@@ -35,8 +35,7 @@ class PlacesViewController: UIViewController, CLLocationManagerDelegate {
     super.viewDidLoad()
     
     locationManager.delegate = self
-    locationManager.requestLocation()
-    
+  
     addReactiveMapHandlers()
     
     self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
@@ -48,9 +47,11 @@ class PlacesViewController: UIViewController, CLLocationManagerDelegate {
       
       getStartedView.isHidden = true
       
-      let startingPoint = placeObjects.first
+      centerOnLastAdded()
       
-      centerTheMap(lat: startingPoint?.value(forKey: "latitude") as! Double, lon: startingPoint?.value(forKey: "latitude") as! Double)
+      addMarkersToMap(places: placeObjects)
+    } else {
+       locationManager.requestLocation()
     }
     
   }
@@ -61,6 +62,7 @@ class PlacesViewController: UIViewController, CLLocationManagerDelegate {
     let longitude = last?.value(forKey: "longitude") as! Double
     
     centerTheMap(lat: latitude, lon: longitude)
+    
   }
   
   func addReactiveMapHandlers() {
@@ -224,21 +226,26 @@ class PlacesViewController: UIViewController, CLLocationManagerDelegate {
     present(autocompleteController, animated: true, completion: nil)
   }
   
-  func fitMapToPlaces(placeObjects: [NSManagedObject]) {
-    let path = GMSMutablePath()
-    for var place in placeObjects
-    {
-      let marker = GMSMarker()
+  func addMarkerToMap(name: String, address: String, latitude: Double, longitude: Double) {
+    let position = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+    let marker = GMSMarker(position: position)
+    marker.title = name
+    marker.icon = UIImage(named: "locationPin")
+    marker.snippet = address
+    marker.map = mapView
+    
+    centerTheMap(lat: latitude, lon: longitude)
+  }
+  
+  func addMarkersToMap(places: [NSManagedObject]) {
+    for place in places {
       let latitude = place.value(forKey: "latitude") as! Double
-      let longitude = place.value(forKey: "latitude") as! Double
-      marker.position = CLLocationCoordinate2DMake(latitude, longitude)
-      marker.icon = UIImage(named: "locationPin")
-      marker.title = place.value(forKey: "name") as! String
-      path.add(marker.position)
-      marker.map = self.mapView
+      let longitude = place.value(forKey: "longitude") as! Double
+      let name = place.value(forKey: "name") as! String
+      let address = place.value(forKey: "address") as! String
+      
+      addMarkerToMap(name: name, address: address, latitude: latitude, longitude: longitude)
     }
-    let bounds = GMSCoordinateBounds(path: path)
-    self.mapView!.animate(with: GMSCameraUpdate.fit(bounds, withPadding: 30.0))
   }
   
   func centerTheMap(lat : Double, lon: Double) {
