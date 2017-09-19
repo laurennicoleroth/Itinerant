@@ -14,7 +14,6 @@ class PlaceDetailsViewController: UIViewController, GMSMapViewDelegate{
   
   var place: Place?
   
-  @IBOutlet var placeNameLabel: UILabel!
   @IBOutlet var addressLabel: UILabel!
   @IBOutlet var mapView: GMSMapView!
   @IBOutlet var openNowLabel: UILabel!
@@ -30,7 +29,6 @@ class PlaceDetailsViewController: UIViewController, GMSMapViewDelegate{
     super.viewWillAppear(animated)
     self.title = place?.name
     
-    placeNameLabel.text = place?.name
     addressLabel.text = place?.address
     phoneNumberButton.setTitle(place?.phoneNumber, for: .normal)
     
