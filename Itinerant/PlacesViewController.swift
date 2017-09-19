@@ -23,6 +23,7 @@ class PlacesViewController: UIViewController {
   
   let disposeBag = DisposeBag()
   let locationManager = CLLocationManager()
+  var placeObjects : [NSManagedObject] = []
   
   var places : [Place] = [] {
     didSet {
@@ -148,7 +149,7 @@ class PlacesViewController: UIViewController {
     }
     
     let managedContext = appDelegate.persistentContainer.viewContext
-    let entity = NSEntityDescription.entity(forEntityName: "Place", in: managedContext)!
+    let entity = NSEntityDescription.entity(forEntityName: "PlaceEntity", in: managedContext)!
     let place = NSManagedObject(entity: entity, insertInto: managedContext)
     
     place.setValue(googlePlace.name, forKeyPath: "name")
