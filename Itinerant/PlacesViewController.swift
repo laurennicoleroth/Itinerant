@@ -52,6 +52,11 @@ class PlacesViewController: UIViewController, CLLocationManagerDelegate {
   
   override func viewWillAppear(_ animated: Bool) {
     placeObjects = fetchPlaces()
+    addMarkersToMap(places: placeObjects)
+    
+    if placeObjects.count > 0 {
+      getStartedView.isHidden = true
+    }
   }
   
   func centerOnLastAdded() {

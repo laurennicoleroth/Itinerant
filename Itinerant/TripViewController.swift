@@ -233,7 +233,7 @@ class TripViewController: UIViewController, UITableViewDelegate, UITableViewData
       
       self.placeObjects.remove(at: indexPath.row)
       self.tableView.deleteRows(at: [indexPath], with: .automatic)
-      deletePlace(place: placeObjects[indexPath.row])
+      
       self.tableView.reloadData()
     }
   }
