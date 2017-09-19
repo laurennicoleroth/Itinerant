@@ -129,8 +129,8 @@ class PlacesViewController: UIViewController {
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "goToTripSegue" {
-//      let destinationVC = segue.destination as! TripViewController
-//      destinationVC.placesArray = places
+      let destinationVC = segue.destination as! TripViewController
+      destinationVC.placesArray = places
     }
   }
   

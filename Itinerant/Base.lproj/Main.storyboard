@@ -132,10 +132,10 @@
             </objects>
             <point key="canvasLocation" x="3149.5999999999999" y="789.35532233883066"/>
         </scene>
-        <!--View Controller-->
+        <!--Trip View Controller-->
         <scene sceneID="d9R-PE-ajJ">
             <objects>
-                <viewController id="NSu-Wz-oIh" sceneMemberID="viewController">
+                <viewController id="NSu-Wz-oIh" customClass="TripViewController" customModule="Itinerant" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="dOB-Xa-2X1"/>
                         <viewControllerLayoutGuide type="bottom" id="qUW-qN-jjF"/>
@@ -143,15 +143,28 @@
                     <view key="view" contentMode="scaleToFill" id="4pd-B2-sk0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ncs-II-Nhf">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ncs-II-Nhf" firstAttribute="top" secondItem="dOB-Xa-2X1" secondAttribute="bottom" constant="-64" id="A1e-mx-etc"/>
+                            <constraint firstItem="qUW-qN-jjF" firstAttribute="top" secondItem="ncs-II-Nhf" secondAttribute="bottom" id="J6b-aX-fEb"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ncs-II-Nhf" secondAttribute="trailing" constant="-16" id="UVG-h5-ZDo"/>
+                            <constraint firstItem="ncs-II-Nhf" firstAttribute="leading" secondItem="4pd-B2-sk0" secondAttribute="leadingMargin" constant="-16" id="XIC-Ec-ac1"/>
+                        </constraints>
                     </view>
                     <connections>
+                        <outlet property="tableView" destination="ncs-II-Nhf" id="7LP-XM-OTW"/>
                         <segue destination="k8I-yC-Mob" kind="show" identifier="goToPlaceDetailsSegue" id="oWb-m1-2dz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kzh-Y4-xmT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3866" y="796"/>
+            <point key="canvasLocation" x="3864.8000000000002" y="795.6521739130435"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Y8g-Gz-tQ0">

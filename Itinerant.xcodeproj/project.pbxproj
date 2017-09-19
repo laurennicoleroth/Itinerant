@@ -119,8 +119,8 @@
 			children = (
 				9653315D1F704F4700F6F244 /* LandingViewController.swift */,
 				965331611F70542B00F6F244 /* WelcomeViewController.swift */,
-				965331631F7059CD00F6F244 /* PlacesViewController.swift */,
 				965331651F705A2E00F6F244 /* NavigationViewController.swift */,
+				965331631F7059CD00F6F244 /* PlacesViewController.swift */,
 				965668981F7091F40014AB06 /* TripViewController.swift */,
 				9656689A1F7092580014AB06 /* PlaceDetailsViewController.swift */,
 			);
