@@ -1,8 +1,8 @@
 # Itinerant
-![where-to-screenshot](https://github.com/laurennicoleroth/Itinerant/blob/readme/screenshots/image1.png | width=48)
-![where-to-screenshot](https://github.com/laurennicoleroth/Itinerant/blob/readme/screenshots/image2.png | width=48)
-![where-to-screenshot](https://github.com/laurennicoleroth/Itinerant/blob/readme/screenshots/image3.png | width=48)
-![where-to-screenshot](https://github.com/laurennicoleroth/Itinerant/blob/readme/screenshots/image4.png | width=48)
+![where-to-screenshot](https://github.com/laurennicoleroth/Itinerant/blob/readme/screenshots/image1.png)
+![where-to-screenshot](https://github.com/laurennicoleroth/Itinerant/blob/readme/screenshots/image2.png)
+![where-to-screenshot](https://github.com/laurennicoleroth/Itinerant/blob/readme/screenshots/image3.png)
+![where-to-screenshot](https://github.com/laurennicoleroth/Itinerant/blob/readme/screenshots/image4.png)
 
 ## Getting Started
 
