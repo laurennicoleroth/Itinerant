@@ -40,8 +40,6 @@ class PlacesViewController: UIViewController, CLLocationManagerDelegate {
     
     self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
     
-    placeObjects = fetchPlaces()
-    
     if placeObjects.count > 0 {
       getStartedView.isHidden = true
       centerOnLastAdded()
@@ -50,6 +48,10 @@ class PlacesViewController: UIViewController, CLLocationManagerDelegate {
        locationManager.requestLocation()
     }
     
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    placeObjects = fetchPlaces()
   }
   
   func centerOnLastAdded() {
@@ -287,6 +289,9 @@ class PlacesViewController: UIViewController, CLLocationManagerDelegate {
   }
   
   @IBAction func clearTripTouched(_ sender: Any) {
+    
+    mapView.clear()
+    
     guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
       return
     }
@@ -301,8 +306,6 @@ class PlacesViewController: UIViewController, CLLocationManagerDelegate {
       managedContext.delete(object)
       
       placeObjects = self.placeObjects.filter { $0 != object }
-      
-      mapView.clear()
     }
     
     do {
