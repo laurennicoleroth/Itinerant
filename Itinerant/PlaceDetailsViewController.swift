@@ -95,9 +95,14 @@ class PlaceDetailsViewController: UIViewController, GMSMapViewDelegate{
   
   func makeCall(phoneNumber: String) {
     let formattedNumber = phoneNumber.components(separatedBy: NSCharacterSet.decimalDigits.inverted).joined(separator: "")
-    let phoneUrl = "tel://\(formatedNumber)"
+    let phoneUrl = "tel://\(formattedNumber)"
     let url:NSURL = NSURL(string: phoneUrl)!
-    UIApplication.shared.openURL(url as URL)
+    
+    if #available(iOS 10, *) {
+      UIApplication.shared.open(url as URL, options: [:], completionHandler: nil)
+    } else {
+      UIApplication.shared.openURL(url as URL)
+    }
   }
   
   
