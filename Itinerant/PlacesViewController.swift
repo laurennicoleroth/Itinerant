@@ -20,6 +20,7 @@ class PlacesViewController: UIViewController, CLLocationManagerDelegate {
   
   @IBOutlet weak var mapView: GMSMapView!
   @IBOutlet weak var buildTripButton: UIButton!
+  @IBOutlet var getStartedView: UIView!
   
   let disposeBag = DisposeBag()
   let locationManager = CLLocationManager()
@@ -34,6 +35,7 @@ class PlacesViewController: UIViewController, CLLocationManagerDelegate {
     super.viewDidLoad()
     
     locationManager.delegate = self
+    locationManager.requestLocation()
     
     addReactiveMapHandlers()
     
@@ -42,12 +44,13 @@ class PlacesViewController: UIViewController, CLLocationManagerDelegate {
     placeObjects = fetchPlaces()
     
     
-    if placeObjects.count > 1 {
+    if placeObjects.count > 0 {
+      
+      getStartedView.isHidden = true
+      
       let startingPoint = placeObjects.first
       
       centerTheMap(lat: startingPoint?.value(forKey: "latitude") as! Double, lon: startingPoint?.value(forKey: "latitude") as! Double)
-    } else {
-      locationManager.requestLocation()
     }
     
   }
@@ -199,15 +202,26 @@ class PlacesViewController: UIViewController, CLLocationManagerDelegate {
   }
   
   @IBAction func addAPlaceTouched(_ sender: Any) {
-    let autocompleteController = GMSAutocompleteViewController()
-    autocompleteController.delegate = self
-    present(autocompleteController, animated: true, completion: nil)
+    presentAutocomplete()
+  }
+  
+  @IBAction func letsBeginTouched(_ sender: Any) {
+    
+    presentAutocomplete()
+    
+    getStartedView.isHidden = true
   }
   
   @IBAction func makeTripButtonTouched(_ sender: Any) {
     
     performSegue(withIdentifier: "buildTripSegue", sender: nil)
     
+  }
+  
+  func presentAutocomplete() {
+    let autocompleteController = GMSAutocompleteViewController()
+    autocompleteController.delegate = self
+    present(autocompleteController, animated: true, completion: nil)
   }
   
   func fitMapToPlaces(placeObjects: [NSManagedObject]) {

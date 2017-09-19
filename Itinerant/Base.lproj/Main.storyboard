@@ -102,15 +102,55 @@
                                     <action selector="makeTripButtonTouched:" destination="Pug-01-Nyd" eventType="touchUpInside" id="00e-LY-btp"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k9j-Cp-587">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="9" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vv0-3a-qPy">
+                                        <rect key="frame" x="22" y="0.0" width="318" height="316"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="316" id="RkA-2W-pys"/>
+                                        </constraints>
+                                        <string key="text"> Welcome to Itinerant! To get started, let's add the first place you want to visit. You can add as many as you like! If you realize a place a too far out of the way, or you change your mind, just tap the marker to remove it. </string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uVX-k7-cr1">
+                                        <rect key="frame" x="137" y="315" width="100" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="6Yp-W2-MSf"/>
+                                            <constraint firstAttribute="width" constant="100" id="RU1-Eu-pak"/>
+                                        </constraints>
+                                        <state key="normal" title="Let's Begin!" backgroundImage="button">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="letsBeginTouched:" destination="Pug-01-Nyd" eventType="touchUpInside" id="Pgq-tL-DrQ"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.26943403389999998" green="0.34509587470000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Vv0-3a-qPy" secondAttribute="trailing" constant="35" id="1qf-e9-dQJ"/>
+                                    <constraint firstItem="uVX-k7-cr1" firstAttribute="top" secondItem="Vv0-3a-qPy" secondAttribute="bottom" constant="-1" id="9Om-vD-4VS"/>
+                                    <constraint firstItem="Vv0-3a-qPy" firstAttribute="leading" secondItem="k9j-Cp-587" secondAttribute="leading" constant="22" id="NwB-wu-CJn"/>
+                                    <constraint firstItem="uVX-k7-cr1" firstAttribute="centerX" secondItem="k9j-Cp-587" secondAttribute="centerX" id="V18-tV-Dro"/>
+                                    <constraint firstItem="Vv0-3a-qPy" firstAttribute="top" secondItem="k9j-Cp-587" secondAttribute="top" id="a6m-1Q-WXz"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="J8g-Md-HhG" secondAttribute="trailing" constant="-16" id="7qj-HH-3lC"/>
                             <constraint firstItem="J8g-Md-HhG" firstAttribute="top" secondItem="0gr-12-fUq" secondAttribute="bottom" id="9Pr-xK-9Ds"/>
                             <constraint firstItem="rpf-6l-5c3" firstAttribute="top" secondItem="ODQ-PW-Oad" secondAttribute="bottom" constant="10" id="G2f-k5-pZS"/>
+                            <constraint firstItem="rpf-6l-5c3" firstAttribute="top" secondItem="k9j-Cp-587" secondAttribute="bottom" id="H5r-gF-K2t"/>
                             <constraint firstItem="ODQ-PW-Oad" firstAttribute="centerX" secondItem="7fo-cq-TwM" secondAttribute="centerX" id="KlR-N4-L57"/>
+                            <constraint firstItem="k9j-Cp-587" firstAttribute="leading" secondItem="7fo-cq-TwM" secondAttribute="leadingMargin" constant="-16" id="LYg-yY-jXD"/>
                             <constraint firstItem="J8g-Md-HhG" firstAttribute="leading" secondItem="7fo-cq-TwM" secondAttribute="leadingMargin" constant="-16" id="N8M-8j-DNM"/>
                             <constraint firstItem="rpf-6l-5c3" firstAttribute="top" secondItem="J8g-Md-HhG" secondAttribute="bottom" id="QUQ-Nu-FMB"/>
+                            <constraint firstItem="k9j-Cp-587" firstAttribute="top" secondItem="0gr-12-fUq" secondAttribute="bottom" id="kDU-Jb-Rf5"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="k9j-Cp-587" secondAttribute="trailing" constant="-16" id="xY8-DM-xH9"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Where To?" id="O0B-Ry-ci8">
@@ -123,6 +163,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="buildTripButton" destination="ODQ-PW-Oad" id="xdO-4D-f7s"/>
+                        <outlet property="getStartedView" destination="k9j-Cp-587" id="Ewd-8A-HDE"/>
                         <outlet property="mapView" destination="J8g-Md-HhG" id="lkK-D2-ZAZ"/>
                         <segue destination="NSu-Wz-oIh" kind="show" identifier="buildTripSegue" id="WAy-k1-dp8"/>
                     </connections>
@@ -307,7 +348,7 @@
             <objects>
                 <navigationController storyboardIdentifier="Navigation" automaticallyAdjustsScrollViewInsets="NO" id="Qi1-3M-GaU" customClass="NavigationViewController" customModule="Itinerant" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="eZd-9d-80L">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="eZd-9d-80L">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
