@@ -31,12 +31,12 @@ class PlaceDetailsViewController: UIViewController, GMSMapViewDelegate{
     super.viewWillAppear(animated)
     
     if placeID != "" {
-      prepareTheView()
+      getPlaceByID(placeID: placeID!)
     }
     
   }
   
-  func getPlaceByID(placeID: String) -> GMSPlace {
+  func getPlaceByID(placeID: String) {
     placesClient.lookUpPlaceID(placeID, callback: { (place, error) -> Void in
       if let error = error {
         print("lookup place id query error: \(error.localizedDescription)")
@@ -48,15 +48,13 @@ class PlaceDetailsViewController: UIViewController, GMSMapViewDelegate{
         return
       }
       
+      self.place = place
       
+      self.prepareTheView(place: place)
     })
-    
-    return place!
   }
   
-  func prepareTheView() {
-    let place = getPlaceByID(placeID: placeID!)
-    
+  func prepareTheView(place: GMSPlace) {
     title = place.name
     addressLabel.text = place.formattedAddress
     phoneNumberButton.setTitle(place.phoneNumber, for: .normal)
@@ -137,19 +135,14 @@ class PlaceDetailsViewController: UIViewController, GMSMapViewDelegate{
   
   
   @IBAction func shareThisPlaceTouched(_ sender: Any) {
-    let place = Place(place: getPlaceByID(placeID: placeID!))
-    
-    shareThePlace(place: place)
+    if place != nil {
+      let shareablePlace = Place(place: place!)
+      let activityVC = UIActivityViewController(activityItems: shareablePlace.makeShareable(), applicationActivities: nil)
+      activityVC.popoverPresentationController?.sourceView = self.view
+      
+      self.present(activityVC, animated: true, completion: nil)
+    }
   }
-  
-  func shareThePlace(place: Place) {
-    
-    let activityVC = UIActivityViewController(activityItems: place.makeShareable(), applicationActivities: nil)
-    activityVC.popoverPresentationController?.sourceView = self.view
-    
-    self.present(activityVC, animated: true, completion: nil)
-  }
-  
   
 }
 
