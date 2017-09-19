@@ -14,13 +14,12 @@ import GoogleMaps
 
 class TripViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
   
-  var placesArray : [Place]
+  var places : [Place] = []
   var placeViewController: PlaceDetailsViewController? = nil
   
   @IBOutlet weak var tableView: UITableView!
   
   required init(coder aDecoder: NSCoder) {
-    placesArray = []
     super.init(coder: aDecoder)!
   }
   
@@ -116,7 +115,7 @@ class TripViewController: UIViewController, UITableViewDelegate, UITableViewData
         My.cellSnapshot!.center = center
         
         if ((indexPath != nil) && (indexPath != Path.initialIndexPath)) {
-          placesArray.insert(placesArray.remove(at: Path.initialIndexPath!.row), at: indexPath!.row)
+          places.insert(places.remove(at: Path.initialIndexPath!.row), at: indexPath!.row)
           tableView.moveRow(at: Path.initialIndexPath!, to: indexPath!)
           Path.initialIndexPath = indexPath
           tableView.reloadData()
@@ -167,7 +166,7 @@ class TripViewController: UIViewController, UITableViewDelegate, UITableViewData
   // MARK: - Table view data source
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return placesArray.count
+    return places.count
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -175,7 +174,7 @@ class TripViewController: UIViewController, UITableViewDelegate, UITableViewData
     let cell = tableView.dequeueReusableCell(withIdentifier: "PlaceCell", for: indexPath) as! PlaceTableViewCell
     
     
-    let place = placesArray[indexPath.row]
+    let place = places[indexPath.row]
     cell.name.text = "Placeholder"
     
     return cell
@@ -188,13 +187,13 @@ class TripViewController: UIViewController, UITableViewDelegate, UITableViewData
   }
   
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    return 80.0
+    return 120.0
   }
   
   func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
     if editingStyle == .delete {
       
-      self.placesArray.remove(at: indexPath.row)
+      self.places.remove(at: indexPath.row)
       self.tableView.deleteRows(at: [indexPath], with: .automatic)
       self.tableView.reloadData()
     }
@@ -208,7 +207,7 @@ class TripViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         let placeVC = segue.destination as! PlaceDetailsViewController
         
-        placeVC.place = placesArray[indexPath.row]
+        placeVC.place = places[indexPath.row]
       }
     }
   }
@@ -222,7 +221,7 @@ extension TripViewController: GMSAutocompleteViewControllerDelegate {
     dismiss(animated: true, completion: {
       
       let place = Place(place: place)
-      self.placesArray.append(place)
+      self.places.append(place)
       self.tableView.reloadData()
       
     })

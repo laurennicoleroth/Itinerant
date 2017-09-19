@@ -128,9 +128,9 @@ class PlacesViewController: UIViewController {
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    if segue.identifier == "goToTripSegue" {
+    if segue.identifier == "buildTripSegue" {
       let destinationVC = segue.destination as! TripViewController
-      destinationVC.placesArray = places
+      destinationVC.places = places
     }
   }
   
@@ -144,6 +144,7 @@ class PlacesViewController: UIViewController {
   @IBAction func makeTripButtonTouched(_ sender: Any) {
     
     performSegue(withIdentifier: "buildTripSegue", sender: nil)
+    
   }
   
   

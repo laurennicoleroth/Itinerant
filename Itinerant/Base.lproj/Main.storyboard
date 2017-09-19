@@ -145,7 +145,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ncs-II-Nhf">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="72" width="375" height="595"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PlaceCell" id="gQj-0S-y5S" customClass="PlaceTableViewCell" customModule="Itinerant" customModuleProvider="target">
@@ -165,7 +165,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="ncs-II-Nhf" firstAttribute="top" secondItem="dOB-Xa-2X1" secondAttribute="bottom" constant="-64" id="A1e-mx-etc"/>
+                            <constraint firstItem="ncs-II-Nhf" firstAttribute="top" secondItem="dOB-Xa-2X1" secondAttribute="bottom" constant="8" symbolic="YES" id="A1e-mx-etc"/>
                             <constraint firstItem="qUW-qN-jjF" firstAttribute="top" secondItem="ncs-II-Nhf" secondAttribute="bottom" id="J6b-aX-fEb"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ncs-II-Nhf" secondAttribute="trailing" constant="-16" id="UVG-h5-ZDo"/>
                             <constraint firstItem="ncs-II-Nhf" firstAttribute="leading" secondItem="4pd-B2-sk0" secondAttribute="leadingMargin" constant="-16" id="XIC-Ec-ac1"/>
@@ -203,7 +203,7 @@
             <objects>
                 <navigationController storyboardIdentifier="Navigation" automaticallyAdjustsScrollViewInsets="NO" id="Qi1-3M-GaU" customClass="NavigationViewController" customModule="Itinerant" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="eZd-9d-80L">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="eZd-9d-80L">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
