@@ -123,6 +123,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="buildTripButton" destination="ODQ-PW-Oad" id="xdO-4D-f7s"/>
                         <outlet property="mapView" destination="J8g-Md-HhG" id="lkK-D2-ZAZ"/>
                         <segue destination="NSu-Wz-oIh" kind="show" identifier="buildTripSegue" id="WAy-k1-dp8"/>
                     </connections>
