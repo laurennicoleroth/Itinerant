@@ -260,14 +260,21 @@
                                     <action selector="shareThisPlaceTouched:" destination="k8I-yC-Mob" eventType="touchUpInside" id="85o-CJ-cgx"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phone Number" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xYL-o8-fmn">
-                                <rect key="frame" x="16" y="424" width="343" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dT4-IA-tSJ">
+                                <rect key="frame" x="0.0" y="414" width="375" height="40"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="kfM-Vs-jOe"/>
+                                </constraints>
+                                <state key="normal" title="PhoneNumber">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="phoneNumberButtonTouched:" destination="k8I-yC-Mob" eventType="touchUpInside" id="0n0-cy-4MK"/>
+                                </connections>
+                            </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rIm-0c-Lo2">
-                                <rect key="frame" x="0.0" y="452" width="375" height="215"/>
+                                <rect key="frame" x="0.0" y="454" width="375" height="213"/>
                                 <color key="backgroundColor" red="0.4823529412" green="0.7843137255" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
                         </subviews>
@@ -275,21 +282,21 @@
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="3IH-3z-ej0" secondAttribute="trailing" constant="-1" id="0Bd-kH-ho2"/>
                             <constraint firstItem="3IH-3z-ej0" firstAttribute="centerX" secondItem="ZF2-2V-XzR" secondAttribute="centerX" id="1cd-WS-wrV"/>
-                            <constraint firstItem="txX-j0-I48" firstAttribute="top" secondItem="rIm-0c-Lo2" secondAttribute="bottom" id="AxB-4D-38d"/>
-                            <constraint firstItem="xYL-o8-fmn" firstAttribute="top" secondItem="Y0e-26-54M" secondAttribute="bottom" constant="8" id="Bfu-l8-vyl"/>
+                            <constraint firstItem="rIm-0c-Lo2" firstAttribute="top" secondItem="dT4-IA-tSJ" secondAttribute="bottom" id="2ud-9B-hAd"/>
+                            <constraint firstItem="txX-j0-I48" firstAttribute="top" secondItem="rIm-0c-Lo2" secondAttribute="bottom" id="3P7-Hl-I9U"/>
+                            <constraint firstItem="rIm-0c-Lo2" firstAttribute="leading" secondItem="CSg-WI-RmY" secondAttribute="leadingMargin" constant="-16" id="4hM-rZ-R02"/>
                             <constraint firstItem="txX-j0-I48" firstAttribute="top" secondItem="ZF2-2V-XzR" secondAttribute="bottom" constant="291" id="Df0-9q-ubD"/>
                             <constraint firstItem="Y0e-26-54M" firstAttribute="top" secondItem="ZF2-2V-XzR" secondAttribute="bottom" id="FHr-Gz-jmY"/>
                             <constraint firstItem="ZF2-2V-XzR" firstAttribute="top" secondItem="3IH-3z-ej0" secondAttribute="bottom" constant="7.5" id="IUg-pE-Y9C"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="xYL-o8-fmn" secondAttribute="trailing" id="NG4-a4-9Pl"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="rIm-0c-Lo2" secondAttribute="trailing" constant="-16" id="ZtJ-G1-gkJ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="dT4-IA-tSJ" secondAttribute="trailing" constant="-16" id="QIJ-fy-9Wt"/>
+                            <constraint firstItem="dT4-IA-tSJ" firstAttribute="top" secondItem="Y0e-26-54M" secondAttribute="bottom" constant="-2" id="Uu1-Ho-DVe"/>
                             <constraint firstItem="ZF2-2V-XzR" firstAttribute="leading" secondItem="CSg-WI-RmY" secondAttribute="leadingMargin" constant="-16" id="dMf-Up-VjE"/>
-                            <constraint firstItem="rIm-0c-Lo2" firstAttribute="leading" secondItem="CSg-WI-RmY" secondAttribute="leadingMargin" constant="-16" id="fWE-TA-O30"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ZF2-2V-XzR" secondAttribute="trailing" constant="-16" id="go2-Sq-eYA"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="xYL-o8-fmn" secondAttribute="leading" id="h5n-YN-8z5"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Y0e-26-54M" secondAttribute="trailing" constant="-16" id="hFI-QJ-4eg"/>
                             <constraint firstItem="Y0e-26-54M" firstAttribute="leading" secondItem="CSg-WI-RmY" secondAttribute="leadingMargin" constant="-16" id="inr-pH-Dv4"/>
                             <constraint firstItem="3IH-3z-ej0" firstAttribute="top" secondItem="3Xs-uI-VRc" secondAttribute="bottom" constant="8" symbolic="YES" id="oJ8-px-yDy"/>
-                            <constraint firstItem="rIm-0c-Lo2" firstAttribute="top" secondItem="xYL-o8-fmn" secondAttribute="bottom" constant="7.5" id="wAk-yl-sxo"/>
+                            <constraint firstItem="dT4-IA-tSJ" firstAttribute="leading" secondItem="CSg-WI-RmY" secondAttribute="leadingMargin" constant="-16" id="qVk-6Q-ac9"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="rIm-0c-Lo2" secondAttribute="trailing" constant="-16" id="zHD-9D-noT"/>
                             <constraint firstItem="3IH-3z-ej0" firstAttribute="leading" secondItem="CSg-WI-RmY" secondAttribute="leadingMargin" id="zSX-Xi-grT"/>
                         </constraints>
                     </view>
@@ -297,7 +304,7 @@
                         <outlet property="addressLabel" destination="kks-KF-9dc" id="b3D-Wd-rBh"/>
                         <outlet property="mapView" destination="ZF2-2V-XzR" id="hLt-5S-1Bb"/>
                         <outlet property="openNowLabel" destination="4IT-aY-ymT" id="M08-0S-JVc"/>
-                        <outlet property="phoneNumberLabel" destination="xYL-o8-fmn" id="9jw-oU-m4L"/>
+                        <outlet property="phoneNumberButton" destination="dT4-IA-tSJ" id="dnk-dg-mgz"/>
                         <outlet property="placeImage" destination="rIm-0c-Lo2" id="vhL-cA-5oP"/>
                         <outlet property="placeNameLabel" destination="Tdh-YD-SK1" id="dQt-lJ-FUA"/>
                     </connections>
@@ -311,7 +318,7 @@
             <objects>
                 <navigationController storyboardIdentifier="Navigation" automaticallyAdjustsScrollViewInsets="NO" id="Qi1-3M-GaU" customClass="NavigationViewController" customModule="Itinerant" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="eZd-9d-80L">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="eZd-9d-80L">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

@@ -18,8 +18,8 @@ class PlaceDetailsViewController: UIViewController, GMSMapViewDelegate{
   @IBOutlet var addressLabel: UILabel!
   @IBOutlet var mapView: GMSMapView!
   @IBOutlet var openNowLabel: UILabel!
-  @IBOutlet var phoneNumberLabel: UILabel!
   @IBOutlet var placeImage: UIImageView!
+  @IBOutlet var phoneNumberButton: UIButton!
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -32,7 +32,7 @@ class PlaceDetailsViewController: UIViewController, GMSMapViewDelegate{
     
     placeNameLabel.text = place?.name
     addressLabel.text = place?.address
-    phoneNumberLabel.text = place?.phoneNumber
+    phoneNumberButton.setTitle(place?.phoneNumber, for: .normal)
     
     if let placeID = place?.placeID {
       loadFirstPhotoForPlace(placeID: placeID)
@@ -84,6 +84,26 @@ class PlaceDetailsViewController: UIViewController, GMSMapViewDelegate{
     super.didReceiveMemoryWarning()
     
   }
+  
+  @IBAction func phoneNumberButtonTouched(_ sender: Any) {
+    
+    if let number = place?.phoneNumber {
+      callNumber(phoneNumber: number)
+    }
+    
+  }
+  
+  private func callNumber(phoneNumber:String) {
+    
+    if let phoneCallURL = URL(string: "tel://\(phoneNumber)") {
+      
+      let application:UIApplication = UIApplication.shared
+      if (application.canOpenURL(phoneCallURL)) {
+        application.open(phoneCallURL, options: [:], completionHandler: nil)
+      }
+    }
+  }
+  
   
   @IBAction func shareThisPlaceTouched(_ sender: Any) {
     shareThePlace(place: place!)
