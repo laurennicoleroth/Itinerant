@@ -228,7 +228,9 @@ class TripViewController: UIViewController, UITableViewDelegate, UITableViewData
       if let indexPath = tableView.indexPathForSelectedRow {
         
         let placeVC = segue.destination as! PlaceDetailsViewController
-        placeVC.placeID = placeObjects[indexPath.row].value(forKey: "placeID")
+
+        let placeObject = placeObjects[indexPath.row]
+        placeVC.placeID = placeObject.value(forKey: "placeID") as! String
       }
     }
   }

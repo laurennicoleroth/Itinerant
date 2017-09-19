@@ -29,50 +29,61 @@ class PlaceDetailsViewController: UIViewController, GMSMapViewDelegate{
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    self.title = place?.name
     
-//    addressLabel.text = place?.formattedAddress
-//    phoneNumberButton.setTitle(place?.phoneNumber, for: .normal)
-//    
-//    if let placeID = place?.placeID {
-//      loadFirstPhotoForPlace(placeID: placeID)
-//    }
-//    
-//    if place?.openNow == true {
-//      openNowLabel.text = "OPEN"
-//      openNowLabel.textColor = UIColor(hue: 0.2778, saturation: 0.93, brightness: 0.62, alpha: 1.0)
-//    } else {
-//      openNowLabel.text = "CLOSED"
-//      openNowLabel.textColor = UIColor.red
-//    }
-//    
-//    
-//    if let center : CLLocationCoordinate2D? = CLLocationCoordinate2D(latitude: (place?.latitude)!, longitude: (place?.longitude)!) {
-//      let camera = GMSCameraPosition.camera(withLatitude: (center?.latitude)!, longitude: (center?.longitude)!, zoom: 16, bearing: 30, viewingAngle: 45)
-//      mapView.camera = camera
-//      
-//      let marker = place?.marker
-//      marker?.map = mapView
-//    }
+    if placeID != "" {
+      prepareTheView()
+    }
+    
   }
   
-  func getPlaceByID() -> GMSPlace {
-    placesClient.lookUpPlaceID(placeID!, callback: { (place, error) -> Void in
+  func getPlaceByID(placeID: String) -> GMSPlace {
+    placesClient.lookUpPlaceID(placeID, callback: { (place, error) -> Void in
       if let error = error {
         print("lookup place id query error: \(error.localizedDescription)")
         return
       }
       
       guard let place = place else {
-        print("No place details for \(String(describing: placeID))")
+        print("No place details for \(String(describing: self.placeID))")
         return
       }
       
-      print("Place name \(place.name)")
-      print("Place address \(place.formattedAddress)")
-      print("Place placeID \(place.placeID)")
-      print("Place attributions \(place.attributions)")
+      
     })
+    
+    return place!
+  }
+  
+  func prepareTheView() {
+    let place = getPlaceByID(placeID: placeID!)
+    
+    title = place.name
+    addressLabel.text = place.formattedAddress
+    phoneNumberButton.setTitle(place.phoneNumber, for: .normal)
+    
+    loadFirstPhotoForPlace(placeID: place.placeID)
+    
+    let marker = GMSMarker()
+    marker.position = CLLocationCoordinate2DMake(place.coordinate.latitude, place.coordinate.longitude)
+    marker.title = place.name
+    marker.icon = UIImage(named: "locationPin")
+    marker.map = self.mapView
+    
+    
+    if place.openNowStatus.rawValue == 2 {
+      self.openNowLabel.text = "OPEN"
+      self.openNowLabel.textColor = UIColor(hue: 0.2778, saturation: 0.93, brightness: 0.62, alpha: 1.0)
+    } else {
+      self.openNowLabel.text = "CLOSED"
+      self.openNowLabel.textColor = UIColor.red
+    }
+    
+    
+    if let center : CLLocationCoordinate2D? = CLLocationCoordinate2D(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude) {
+      let camera = GMSCameraPosition.camera(withLatitude: (center?.latitude)!, longitude: (center?.longitude)!, zoom: 16, bearing: 30, viewingAngle: 45)
+      self.mapView.camera = camera
+      
+    }
   }
   
   func loadFirstPhotoForPlace(placeID: String) {
@@ -126,7 +137,9 @@ class PlaceDetailsViewController: UIViewController, GMSMapViewDelegate{
   
   
   @IBAction func shareThisPlaceTouched(_ sender: Any) {
-    shareThePlace(place: place!)
+    let place = Place(place: getPlaceByID(placeID: placeID!))
+    
+    shareThePlace(place: place)
   }
   
   func shareThePlace(place: Place) {
