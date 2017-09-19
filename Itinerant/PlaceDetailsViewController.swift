@@ -8,12 +8,11 @@
 
 import UIKit
 import GoogleMaps
-import Alamofire
+import GooglePlaces
 
 class PlaceDetailsViewController: UIViewController, GMSMapViewDelegate{
   
   var place: Place?
-  let photoURL = "https://maps.googleapis.com/maps/api/place/photo"
   
   @IBOutlet var placeNameLabel: UILabel!
   @IBOutlet var addressLabel: UILabel!
@@ -35,7 +34,9 @@ class PlaceDetailsViewController: UIViewController, GMSMapViewDelegate{
     addressLabel.text = place?.address
     phoneNumberLabel.text = place?.phoneNumber
     
-    setPhoto()
+    if let placeID = place?.placeID {
+      loadFirstPhotoForPlace(placeID: placeID)
+    }
     
     if place?.openNow == true {
       openNowLabel.text = "OPEN"
@@ -55,26 +56,28 @@ class PlaceDetailsViewController: UIViewController, GMSMapViewDelegate{
     }
   }
   
-  func setPhoto() {
-    
-    if let path = Bundle.main.path(forResource: "Keys", ofType: "plist"),
-      let keys = NSDictionary(contentsOfFile: path),
-      let googleKey = keys["googlePlacesAPIKey"] as? String
-    {
-      let params : [String:AnyObject] = ["maxwidth" : 500 as AnyObject,
-                                         "photoreference": "\(place.photoReference)" as AnyObject,
-                                         "key" : googleKey as AnyObject]
-      
-      Alamofire.request(.GET, photoURL, parameters: params ).response{ (request, response, dataIn, error) in
-        
-        DispatchQueue.main.async { [unowned self] in
-          if let imageData = dataIn {
-            self.placeImage.image = UIImage(data: imageData)
-          }
+  func loadFirstPhotoForPlace(placeID: String) {
+    GMSPlacesClient.shared().lookUpPhotos(forPlaceID: placeID) { (photos, error) -> Void in
+      if let error = error {
+        // TODO: handle the error.
+        print("Error: \(error.localizedDescription)")
+      } else {
+        if let firstPhoto = photos?.results.first {
+          self.loadImageForMetadata(photoMetadata: firstPhoto)
         }
       }
     }
-    
+  }
+  
+  func loadImageForMetadata(photoMetadata: GMSPlacePhotoMetadata) {
+    GMSPlacesClient.shared().loadPlacePhoto(photoMetadata, callback: {
+      (photo, error) -> Void in
+      if let error = error {
+        print("Error: \(error.localizedDescription)")
+      } else {
+        self.placeImage.image = photo
+      }
+    })
   }
   
   override func didReceiveMemoryWarning() {
