@@ -16,6 +16,7 @@ class TripViewController: UIViewController, UITableViewDelegate, UITableViewData
   
   var places : [Place] = []
   var placeViewController: PlaceDetailsViewController? = nil
+  var placeObjects: [NSManagedObject] = []
   
   @IBOutlet weak var tableView: UITableView!
   
@@ -53,6 +54,28 @@ class TripViewController: UIViewController, UITableViewDelegate, UITableViewData
     let longpress = UILongPressGestureRecognizer(target: self, action: #selector(TripViewController.longPressGestureRecognized(_:)))
     
     tableView.addGestureRecognizer(longpress)
+  }
+  
+  func savePlace(googlePlace: GMSPlace) {
+    guard let appDelegate =
+      UIApplication.shared.delegate as? AppDelegate else {
+        return
+    }
+
+    let managedContext = appDelegate.persistentContainer.viewContext
+    let entity = NSEntityDescription.entity(forEntityName: "Place", in: managedContext)!
+    let place = NSManagedObject(entity: entity, insertInto: managedContext)
+
+    place.setValue(googlePlace.name, forKeyPath: "name")
+    place.setValue(googlePlace.placeID, forKey: "placeID")
+    place.setValue(googlePlace.formattedAddress, forKey: "address")
+
+    do {
+      try managedContext.save()
+      placeObjects.append(place)
+    } catch let error as NSError {
+      print("Could not save. \(error), \(error.userInfo)")
+    }
   }
   
   func insertNewObject(_ sender: Any) {
@@ -168,14 +191,16 @@ class TripViewController: UIViewController, UITableViewDelegate, UITableViewData
   // MARK: - Table view data source
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return places.count
+    return placeObjects.count
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
     let cell = tableView.dequeueReusableCell(withIdentifier: "PlaceCell", for: indexPath) as! PlaceTableViewCell
     
-    cell.setup(place: places[indexPath.row])
+//    cell.setup(place: placeObjects[indexPath.row])
+    let placeObject = placeObjects[indexPath.row]
+    cell.nameLabel?.text = placeObject.value(forKey: "name") as? String
     
     return cell
   }

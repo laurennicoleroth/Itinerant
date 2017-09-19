@@ -14,6 +14,7 @@ import GoogleMaps
 import RxGoogleMaps
 import GooglePlaces
 import CoreLocation
+import CoreData
 
 class PlacesViewController: UIViewController {
   
@@ -140,6 +141,27 @@ class PlacesViewController: UIViewController {
     present(autocompleteController, animated: true, completion: nil)
   }
   
+  func savePlace(googlePlace: GMSPlace) {
+    guard let appDelegate =
+      UIApplication.shared.delegate as? AppDelegate else {
+        return
+    }
+    
+    let managedContext = appDelegate.persistentContainer.viewContext
+    let entity = NSEntityDescription.entity(forEntityName: "Place", in: managedContext)!
+    let place = NSManagedObject(entity: entity, insertInto: managedContext)
+    
+    place.setValue(googlePlace.name, forKeyPath: "name")
+    place.setValue(googlePlace.placeID, forKey: "placeID")
+    place.setValue(googlePlace.formattedAddress, forKey: "address")
+    
+    do {
+      try managedContext.save()
+      placeObjects.append(place)
+    } catch let error as NSError {
+      print("Could not save. \(error), \(error.userInfo)")
+    }
+  }
   
   @IBAction func makeTripButtonTouched(_ sender: Any) {
     
@@ -198,15 +220,19 @@ extension PlacesViewController: GMSAutocompleteViewControllerDelegate {
     
     dismiss(animated: true, completion: {
       
-      let place = Place(place: place)
-      let marker = place.marker
+      self.savePlace(googlePlace: place)
+      
+      let newPlace = Place(place: place)
+      let marker = newPlace.marker
       marker.map = self.mapView
       
-      self.places.append(place)
+      self.places.append(newPlace)
       
       self.centerTheMap(lat: marker.position.latitude, lon: marker.position.longitude)
     })
   }
+  
+ 
   
   func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
     // TODO: handle the error.
