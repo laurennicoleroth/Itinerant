@@ -12,7 +12,9 @@ import GooglePlaces
 
 class PlaceDetailsViewController: UIViewController, GMSMapViewDelegate{
   
-  var place: Place?
+  var placeID: String? = ""
+  var place : GMSPlace?
+  let placesClient = GMSPlacesClient()
   
   @IBOutlet var addressLabel: UILabel!
   @IBOutlet var mapView: GMSMapView!
@@ -29,29 +31,48 @@ class PlaceDetailsViewController: UIViewController, GMSMapViewDelegate{
     super.viewWillAppear(animated)
     self.title = place?.name
     
-    addressLabel.text = place?.address
-    phoneNumberButton.setTitle(place?.phoneNumber, for: .normal)
-    
-    if let placeID = place?.placeID {
-      loadFirstPhotoForPlace(placeID: placeID)
-    }
-    
-    if place?.openNow == true {
-      openNowLabel.text = "OPEN"
-      openNowLabel.textColor = UIColor(hue: 0.2778, saturation: 0.93, brightness: 0.62, alpha: 1.0)
-    } else {
-      openNowLabel.text = "CLOSED"
-      openNowLabel.textColor = UIColor.red
-    }
-    
-    
-    if let center : CLLocationCoordinate2D? = CLLocationCoordinate2D(latitude: (place?.latitude)!, longitude: (place?.longitude)!) {
-      let camera = GMSCameraPosition.camera(withLatitude: (center?.latitude)!, longitude: (center?.longitude)!, zoom: 16, bearing: 30, viewingAngle: 45)
-      mapView.camera = camera
+//    addressLabel.text = place?.formattedAddress
+//    phoneNumberButton.setTitle(place?.phoneNumber, for: .normal)
+//    
+//    if let placeID = place?.placeID {
+//      loadFirstPhotoForPlace(placeID: placeID)
+//    }
+//    
+//    if place?.openNow == true {
+//      openNowLabel.text = "OPEN"
+//      openNowLabel.textColor = UIColor(hue: 0.2778, saturation: 0.93, brightness: 0.62, alpha: 1.0)
+//    } else {
+//      openNowLabel.text = "CLOSED"
+//      openNowLabel.textColor = UIColor.red
+//    }
+//    
+//    
+//    if let center : CLLocationCoordinate2D? = CLLocationCoordinate2D(latitude: (place?.latitude)!, longitude: (place?.longitude)!) {
+//      let camera = GMSCameraPosition.camera(withLatitude: (center?.latitude)!, longitude: (center?.longitude)!, zoom: 16, bearing: 30, viewingAngle: 45)
+//      mapView.camera = camera
+//      
+//      let marker = place?.marker
+//      marker?.map = mapView
+//    }
+  }
+  
+  func getPlaceByID() -> GMSPlace {
+    placesClient.lookUpPlaceID(placeID!, callback: { (place, error) -> Void in
+      if let error = error {
+        print("lookup place id query error: \(error.localizedDescription)")
+        return
+      }
       
-      let marker = place?.marker
-      marker?.map = mapView
-    }
+      guard let place = place else {
+        print("No place details for \(String(describing: placeID))")
+        return
+      }
+      
+      print("Place name \(place.name)")
+      print("Place address \(place.formattedAddress)")
+      print("Place placeID \(place.placeID)")
+      print("Place attributions \(place.attributions)")
+    })
   }
   
   func loadFirstPhotoForPlace(placeID: String) {
