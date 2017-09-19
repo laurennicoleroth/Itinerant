@@ -26,6 +26,9 @@ class TripViewController: UIViewController, UITableViewDelegate, UITableViewData
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
+    self.title = "Add To Or Re-Order Your Trip"
+    
     navbarSetup()
     tableGestureSetup()
     
@@ -39,8 +42,7 @@ class TripViewController: UIViewController, UITableViewDelegate, UITableViewData
   }
   
   func navbarSetup() {
-    navigationItem.leftBarButtonItem = editButtonItem
-    
+
     let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(insertNewObject(_:)))
     navigationItem.rightBarButtonItem = addButton
   }
@@ -179,7 +181,6 @@ class TripViewController: UIViewController, UITableViewDelegate, UITableViewData
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    //    tableView.deselectRow(at: indexPath, animated: false)
     
     performSegue(withIdentifier: "goToPlaceDetailsSegue", sender: self)
   }
