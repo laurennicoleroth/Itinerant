@@ -1,5 +1,5 @@
 # Itinerant 
-![image-alt](.screenshots/image-1.png)
+![image-alt](screenshots/image-1.png)
 
 ## Getting Started
 
