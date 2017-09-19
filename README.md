@@ -14,13 +14,31 @@ Here are some screenshots!
 
 ## Getting Started
 
-Itinerant uses pods, so pod install. One file is missing, on purpose, and that is the Keys.plist file.
+Itinerant uses pods, so pod install. One file is missing, on purpose, and that is the Keys.plist file. I would share mine, but I like to keep keys off github.
 
 ```Swift
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
 <key>googleMapsAPIKey</key>
   <string>Your Google Maps Key</string>
   <key>googlePlacesAPIKey</key>
   <string>Your Google Places Key - Be sure to restrict access to com.Itinerant</string>
+</dict>
+</plist>
+```
+
+You will see that these are referenced in AppDelegate. So like the good captain says, "make it so"
+```Swift
+if let path = Bundle.main.path(forResource: "Keys", ofType: "plist"),
+      let keys = NSDictionary(contentsOfFile: path),
+      let googleMapsKey = keys["googleMapsAPIKey"] as? String,
+      let googlePlacesKey = keys["googlePlacesAPIKey"] as? String
+    {
+      GMSServices.provideAPIKey(googleMapsKey)
+      GMSPlacesClient.provideAPIKey(googlePlacesKey)
+    }
 ```
 
 ### Prerequisites
@@ -58,4 +76,4 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* Google(Maps/Places/Firebase - thanks!) - UIKit - CoreData - Computers That Fit In Your Pocket
+* Google(Maps/Places/Firebase - thanks!) - UIKit - CoreData - Computers That Fit In Your Pocket - Spaces over Tabs
