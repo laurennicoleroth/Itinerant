@@ -28,7 +28,7 @@ class PlaceDetailsViewController: UIViewController, GMSMapViewDelegate{
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    self.title = "Place Details"
+    self.title = place?.name
     
     placeNameLabel.text = place?.name
     addressLabel.text = place?.address
