@@ -14,8 +14,9 @@ import GoogleMaps
 
 class TripViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
   
-  var places : [Place] = []
+//  var places : [Place] = []
   var placeViewController: PlaceDetailsViewController? = nil
+  var placeObjects: [NSManagedObject] = []
   
   @IBOutlet weak var tableView: UITableView!
   
@@ -32,6 +33,8 @@ class TripViewController: UIViewController, UITableViewDelegate, UITableViewData
     navbarSetup()
     tableGestureSetup()
     
+    getPlacesFromeCoreData()
+    
     tableView.register(UINib(nibName: "PlaceTableViewCell", bundle: nil), forCellReuseIdentifier: "PlaceCell")
     
   }
@@ -39,6 +42,24 @@ class TripViewController: UIViewController, UITableViewDelegate, UITableViewData
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
+  }
+  
+  func getPlacesFromeCoreData() {
+    guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+      return
+    }
+    
+    let managedContext = appDelegate.persistentContainer.viewContext
+    let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "ManagedPlace")
+    
+    do {
+      placeObjects = try managedContext.fetch(fetchRequest)
+      
+      print("Retrieved ", placeObjects.count, " places")
+  
+    } catch let error as NSError {
+      print("Could not fetch. \(error), \(error.userInfo)")
+    }
   }
   
   func navbarSetup() {
@@ -117,7 +138,7 @@ class TripViewController: UIViewController, UITableViewDelegate, UITableViewData
         My.cellSnapshot!.center = center
         
         if ((indexPath != nil) && (indexPath != Path.initialIndexPath)) {
-          places.insert(places.remove(at: Path.initialIndexPath!.row), at: indexPath!.row)
+          placeObjects.insert(placeObjects.remove(at: Path.initialIndexPath!.row), at: indexPath!.row)
           tableView.moveRow(at: Path.initialIndexPath!, to: indexPath!)
           Path.initialIndexPath = indexPath
           tableView.reloadData()
@@ -168,14 +189,16 @@ class TripViewController: UIViewController, UITableViewDelegate, UITableViewData
   // MARK: - Table view data source
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return places.count
+    return placeObjects.count
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
     let cell = tableView.dequeueReusableCell(withIdentifier: "PlaceCell", for: indexPath) as! PlaceTableViewCell
     
-    cell.setup(place: places[indexPath.row])
+//    cell.setup(place: placeObjects[indexPath.row])
+    let placeObject = placeObjects[indexPath.row]
+    cell.nameLabel?.text = placeObject.value(forKey: "name") as? String
     
     return cell
   }
@@ -192,7 +215,7 @@ class TripViewController: UIViewController, UITableViewDelegate, UITableViewData
   func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
     if editingStyle == .delete {
       
-      self.places.remove(at: indexPath.row)
+      self.placeObjects.remove(at: indexPath.row)
       self.tableView.deleteRows(at: [indexPath], with: .automatic)
       self.tableView.reloadData()
     }
@@ -205,8 +228,9 @@ class TripViewController: UIViewController, UITableViewDelegate, UITableViewData
       if let indexPath = tableView.indexPathForSelectedRow {
         
         let placeVC = segue.destination as! PlaceDetailsViewController
-        
-        placeVC.place = places[indexPath.row]
+
+        let placeObject = placeObjects[indexPath.row]
+        placeVC.placeID = placeObject.value(forKey: "placeID") as! String
       }
     }
   }
@@ -219,8 +243,9 @@ extension TripViewController: GMSAutocompleteViewControllerDelegate {
     
     dismiss(animated: true, completion: {
       
-      let place = Place(place: place)
-      self.places.append(place)
+      let newPlace = Place(place: place)
+      newPlace.savePlace()
+
       self.tableView.reloadData()
       
     })

@@ -12,14 +12,15 @@ import GooglePlaces
 
 class PlaceDetailsViewController: UIViewController, GMSMapViewDelegate{
   
-  var place: Place?
+  var placeID: String? = ""
+  var place : GMSPlace?
+  let placesClient = GMSPlacesClient()
   
-  @IBOutlet var placeNameLabel: UILabel!
   @IBOutlet var addressLabel: UILabel!
   @IBOutlet var mapView: GMSMapView!
   @IBOutlet var openNowLabel: UILabel!
-  @IBOutlet var phoneNumberLabel: UILabel!
   @IBOutlet var placeImage: UIImageView!
+  @IBOutlet var phoneNumberButton: UIButton!
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -28,31 +29,58 @@ class PlaceDetailsViewController: UIViewController, GMSMapViewDelegate{
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    self.title = "Place Details"
     
-    placeNameLabel.text = place?.name
-    addressLabel.text = place?.address
-    phoneNumberLabel.text = place?.phoneNumber
-    
-    if let placeID = place?.placeID {
-      loadFirstPhotoForPlace(placeID: placeID)
+    if placeID != "" {
+      getPlaceByID(placeID: placeID!)
     }
     
-    if place?.openNow == true {
-      openNowLabel.text = "OPEN"
-      openNowLabel.textColor = UIColor(hue: 0.2778, saturation: 0.93, brightness: 0.62, alpha: 1.0)
-    } else {
-      openNowLabel.text = "CLOSED"
-      openNowLabel.textColor = UIColor.red
-    }
-    
-    
-    if let center : CLLocationCoordinate2D? = CLLocationCoordinate2D(latitude: (place?.latitude)!, longitude: (place?.longitude)!) {
-      let camera = GMSCameraPosition.camera(withLatitude: (center?.latitude)!, longitude: (center?.longitude)!, zoom: 16, bearing: 30, viewingAngle: 45)
-      mapView.camera = camera
+  }
+  
+  func getPlaceByID(placeID: String) {
+    placesClient.lookUpPlaceID(placeID, callback: { (place, error) -> Void in
+      if let error = error {
+        print("lookup place id query error: \(error.localizedDescription)")
+        return
+      }
       
-      let marker = place?.marker
-      marker?.map = mapView
+      guard let place = place else {
+        print("No place details for \(String(describing: self.placeID))")
+        return
+      }
+      
+      self.place = place
+      
+      self.prepareTheView(place: place)
+    })
+  }
+  
+  func prepareTheView(place: GMSPlace) {
+    title = place.name
+    addressLabel.text = place.formattedAddress
+    phoneNumberButton.setTitle(place.phoneNumber, for: .normal)
+    
+    loadFirstPhotoForPlace(placeID: place.placeID)
+    
+    let marker = GMSMarker()
+    marker.position = CLLocationCoordinate2DMake(place.coordinate.latitude, place.coordinate.longitude)
+    marker.title = place.name
+    marker.icon = UIImage(named: "locationPin")
+    marker.map = self.mapView
+    
+    
+    if place.openNowStatus.rawValue == 2 {
+      self.openNowLabel.text = "OPEN"
+      self.openNowLabel.textColor = UIColor(hue: 0.2778, saturation: 0.93, brightness: 0.62, alpha: 1.0)
+    } else {
+      self.openNowLabel.text = "CLOSED"
+      self.openNowLabel.textColor = UIColor.red
+    }
+    
+    
+    if let center : CLLocationCoordinate2D? = CLLocationCoordinate2D(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude) {
+      let camera = GMSCameraPosition.camera(withLatitude: (center?.latitude)!, longitude: (center?.longitude)!, zoom: 16, bearing: 30, viewingAngle: 45)
+      self.mapView.camera = camera
+      
     }
   }
   
@@ -85,18 +113,36 @@ class PlaceDetailsViewController: UIViewController, GMSMapViewDelegate{
     
   }
   
+  @IBAction func phoneNumberButtonTouched(_ sender: Any) {
+    
+    if let number = place?.phoneNumber {
+      makeCall(phoneNumber: number)
+    }
+    
+  }
+  
+  func makeCall(phoneNumber: String) {
+    let formattedNumber = phoneNumber.components(separatedBy: NSCharacterSet.decimalDigits.inverted).joined(separator: "")
+    let phoneUrl = "tel://\(formattedNumber)"
+    let url:NSURL = NSURL(string: phoneUrl)!
+    
+    if #available(iOS 10, *) {
+      UIApplication.shared.open(url as URL, options: [:], completionHandler: nil)
+    } else {
+      UIApplication.shared.openURL(url as URL)
+    }
+  }
+  
+  
   @IBAction func shareThisPlaceTouched(_ sender: Any) {
-    shareThePlace(place: place!)
+    if place != nil {
+      let shareablePlace = Place(place: place!)
+      let activityVC = UIActivityViewController(activityItems: shareablePlace.makeShareable(), applicationActivities: nil)
+      activityVC.popoverPresentationController?.sourceView = self.view
+      
+      self.present(activityVC, animated: true, completion: nil)
+    }
   }
-  
-  func shareThePlace(place: Place) {
-    
-    let activityVC = UIActivityViewController(activityItems: place.makeShareable(), applicationActivities: nil)
-    activityVC.popoverPresentationController?.sourceView = self.view
-    
-    self.present(activityVC, animated: true, completion: nil)
-  }
-  
   
 }
 

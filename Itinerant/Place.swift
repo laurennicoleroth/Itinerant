@@ -9,6 +9,7 @@
 import Foundation
 import GooglePlaces
 import GoogleMaps
+import CoreData
 
 class Place {
 
@@ -56,9 +57,37 @@ class Place {
     }
   }
   
+  func savePlace() {
+    guard let appDelegate =
+      UIApplication.shared.delegate as? AppDelegate else {
+        return
+    }
+    
+    let managedContext = appDelegate.persistentContainer.viewContext
+    let entity = NSEntityDescription.entity(forEntityName: "ManagedPlace", in: managedContext)!
+    let place = NSManagedObject(entity: entity, insertInto: managedContext)
+    
+    place.setValue(self.name, forKeyPath: "name")
+    place.setValue(self.rating, forKeyPath: "rating")
+    place.setValue(self.latitude, forKey: "latitude")
+    place.setValue(self.longitude, forKey: "longitude")
+    place.setValue(self.placeID, forKey: "placeID")
+    place.setValue(self.priceLevel, forKey: "priceLevel")
+    place.setValue(self.website, forKey: "website")
+    place.setValue(self.phoneNumber, forKey: "phoneNumber")
+    place.setValue(self.address, forKey: "address")
+    
+    
+    do {
+      try managedContext.save()
+    } catch let error as NSError {
+      print("Could not save. \(error), \(error.userInfo)")
+    }
+  }
+  
   func makeShareable() -> [Any] {
     
-    let placeString = "\(marker.title!): \n\(marker.position.latitude), \(marker.position.longitude)\n"
+    let placeString = "\(marker.title!)\n"
     var objectsToShare = [Any]()
     
     let lat = marker.position.latitude
