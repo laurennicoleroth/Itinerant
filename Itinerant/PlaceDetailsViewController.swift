@@ -8,6 +8,7 @@
 
 import UIKit
 import GoogleMaps
+import Alamofire
 
 class PlaceDetailsViewController: UIViewController, GMSMapViewDelegate{
   
@@ -34,7 +35,7 @@ class PlaceDetailsViewController: UIViewController, GMSMapViewDelegate{
     addressLabel.text = place?.address
     phoneNumberLabel.text = place?.phoneNumber
     
-    setPhoto(string: )
+    setPhoto()
     
     if place?.openNow == true {
       openNowLabel.text = "OPEN"
@@ -54,9 +55,31 @@ class PlaceDetailsViewController: UIViewController, GMSMapViewDelegate{
     }
   }
   
+  func setPhoto() {
+    
+    if let path = Bundle.main.path(forResource: "Keys", ofType: "plist"),
+      let keys = NSDictionary(contentsOfFile: path),
+      let googleMapsKey = keys["googleMapsAPIKey"] as? String
+    {
+      let params : [String:AnyObject] = ["maxwidth" : 500 as AnyObject,
+                                         "photoreference": "\(place.photoReference)" as AnyObject,
+                                         "key" : googleMapsKey as AnyObject]
+      
+      Alamofire.request(.GET, photoURL, parameters: params ).response{ (request, response, dataIn, error) in
+        
+        DispatchQueue.main.async { [unowned self] in
+          if let imageData = dataIn {
+            self.placeImage.image = UIImage(data: imageData)
+          }
+        }
+      }
+    }
+    
+  }
+  
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
-  
+    
   }
   
   @IBAction func shareThisPlaceTouched(_ sender: Any) {
