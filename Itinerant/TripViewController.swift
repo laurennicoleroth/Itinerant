@@ -196,9 +196,23 @@ class TripViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     let cell = tableView.dequeueReusableCell(withIdentifier: "PlaceCell", for: indexPath) as! PlaceTableViewCell
     
-//    cell.setup(place: placeObjects[indexPath.row])
     let placeObject = placeObjects[indexPath.row]
-    cell.nameLabel?.text = placeObject.value(forKey: "name") as? String
+    cell.nameLabel?.text = "\(indexPath.row + 1). " + (placeObject.value(forKey: "name") as? String)!
+    cell.addressLabel.text = placeObject.value(forKey: "address") as? String
+    cell.starRatingView.rating = placeObject.value(forKey: "rating") as! Double
+    
+    if let open = placeObject.value(forKey: "openNow") as! Bool? {
+      
+      if (open == true) {
+        cell.openNowLabel.text = "OPEN"
+        cell.openNowLabel.textColor = UIColor(hue: 0.2778, saturation: 0.93, brightness: 0.62, alpha: 1.0)
+      } else {
+        cell.openNowLabel.text = "CLOSED"
+        cell.openNowLabel.textColor = UIColor.red
+      }
+    } else {
+      cell.openNowLabel.isHidden = true
+    }
     
     return cell
   }

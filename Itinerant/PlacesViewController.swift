@@ -117,6 +117,32 @@ class PlacesViewController: UIViewController {
     centerTheMap(lat: 40.7416089 , lon: -73.9931664)
     
   }
+  
+  func deletePlaceFromCoreData(name: String) {
+    guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+      return
+    }
+    
+    let managedContext = appDelegate.persistentContainer.viewContext
+    let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "ManagedPlace")
+    fetchRequest.predicate = NSPredicate(format: "name == %@", name)
+    
+    let result = try? managedContext.fetch(fetchRequest)
+    let resultData = result as! [ManagedPlace]
+    
+    for object in resultData {
+      managedContext.delete(object)
+    }
+    
+    do {
+      try managedContext.save()
+      print("saved!")
+    } catch let error as NSError  {
+      print("Could not save \(error), \(error.userInfo)")
+    } catch {
+      
+    }
+  }
 
   func addMarkersFromCoreData() {
     guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
@@ -195,7 +221,7 @@ class PlacesViewController: UIViewController {
       print("Remove from \(String(describing: marker.title)) from map.")
       marker.map = nil
       
-//      self.places = self.places.filter { $0.marker != marker }
+      self.deletePlaceFromCoreData(name: marker.title!)
       
     }
     
