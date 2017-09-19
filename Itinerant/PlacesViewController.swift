@@ -33,6 +33,10 @@ class PlacesViewController: UIViewController {
     
     fitMapToPlaces(placeObjects: fetchPlaces())
     
+    addReactiveMapHandlers()
+  }
+  
+  func addReactiveMapHandlers() {
     mapView.settings.myLocationButton = true
     
     let startLocationManager = mapView.rx.didTapMyLocationButton.take(1).publish()
@@ -108,7 +112,6 @@ class PlacesViewController: UIViewController {
         })
         .addDisposableTo(disposeBag)
     }
-    
   }
   
   override func viewDidAppear(_ animated: Bool) {
