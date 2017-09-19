@@ -88,20 +88,16 @@ class PlaceDetailsViewController: UIViewController, GMSMapViewDelegate{
   @IBAction func phoneNumberButtonTouched(_ sender: Any) {
     
     if let number = place?.phoneNumber {
-      callNumber(phoneNumber: number)
+      makeCall(phoneNumber: number)
     }
     
   }
   
-  private func callNumber(phoneNumber:String) {
-    
-    if let phoneCallURL = URL(string: "tel://\(phoneNumber)") {
-      
-      let application:UIApplication = UIApplication.shared
-      if (application.canOpenURL(phoneCallURL)) {
-        application.open(phoneCallURL, options: [:], completionHandler: nil)
-      }
-    }
+  func makeCall(phoneNumber: String) {
+    let formattedNumber = phoneNumber.components(separatedBy: NSCharacterSet.decimalDigits.inverted).joined(separator: "")
+    let phoneUrl = "tel://\(formatedNumber)"
+    let url:NSURL = NSURL(string: phoneUrl)!
+    UIApplication.shared.openURL(url as URL)
   }
   
   
