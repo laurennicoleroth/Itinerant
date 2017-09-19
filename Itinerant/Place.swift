@@ -11,13 +11,26 @@ import GooglePlaces
 import GoogleMaps
 
 class Place {
+
+  var name: String?
+  var rating: Double?
+  var latitude: Double?
+  var longitude: Double?
+  var iconName: String?
+  var placeID: String?
+  var photoReference: String?
+  var photo: UIImage?
+  var icon: UIImage?
+  var priceLevel: Double?
+  var website: String?
+  var phoneNumber: String?
+  var address: String?
   
-  var place: GMSPlace
   var marker : GMSMarker {
     get {
       let marker = GMSMarker()
-      marker.position = CLLocationCoordinate2DMake(place.coordinate.latitude, place.coordinate.longitude)
-      marker.title = place.name
+      marker.position = CLLocationCoordinate2DMake(latitude!, longitude!)
+      marker.title = name
       marker.icon = #imageLiteral(resourceName: "locationPin")
       
       return marker
@@ -25,7 +38,15 @@ class Place {
   }
   
   init(place: GMSPlace) {
-    self.place = place
+    self.name = place.name
+    self.rating = Double(place.rating)
+    self.latitude = place.coordinate.latitude
+    self.longitude = place.coordinate.longitude
+    self.placeID = place.placeID
+    self.priceLevel = Double(place.priceLevel.rawValue)
+    self.website = String(describing: place.website)
+    self.phoneNumber = place.phoneNumber
+    self.address = place.formattedAddress
   }
   
   
