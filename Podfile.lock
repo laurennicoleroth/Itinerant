@@ -61,6 +61,7 @@ PODS:
     - RxCocoa (~> 3.2)
     - RxSwift (~> 3.2)
   - RxSwift (3.6.1)
+  - SwiftyJSON (3.1.4)
 
 DEPENDENCIES:
   - Alamofire
@@ -73,6 +74,7 @@ DEPENDENCIES:
   - RxCocoa
   - RxGoogleMaps
   - RxSwift
+  - SwiftyJSON
 
 SPEC CHECKSUMS:
   Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
@@ -92,7 +94,8 @@ SPEC CHECKSUMS:
   RxCocoa: 84a08739ab186248c7f31ce4ee92d6f8a947d690
   RxGoogleMaps: a0968a520060bf087e26b7b830d9156822ee1254
   RxSwift: f9de85ea20cd2f7716ee5409fc13523dc638e4e4
+  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: 268fddd8b448cc27822df366a12336ed971ee6a8
+PODFILE CHECKSUM: 109a24ac976fc553eda28720bf6a679cee7521da
 
 COCOAPODS: 1.2.1
