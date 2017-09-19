@@ -193,22 +193,22 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="3IH-3z-ej0">
-                                <rect key="frame" x="95" y="72" width="186" height="82"/>
+                                <rect key="frame" x="16" y="72" width="344" height="82"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Cleopatra's Needle" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tdh-YD-SK1">
-                                        <rect key="frame" x="13" y="0.0" width="160" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Cleopatra's Needle" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tdh-YD-SK1">
+                                        <rect key="frame" x="13" y="0.0" width="318" height="25.5"/>
                                         <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="17"/>
                                         <color key="textColor" red="0.26943403389999998" green="0.34509587470000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kks-KF-9dc">
-                                        <rect key="frame" x="62" y="31" width="62" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <rect key="frame" x="0.0" y="35.5" width="344" height="16"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <color key="textColor" red="0.26943403389999998" green="0.34509587470000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Ryn-6P-wfz">
-                                        <rect key="frame" x="0.5" y="61.5" width="185.5" height="20.5"/>
+                                        <rect key="frame" x="79.5" y="61.5" width="185.5" height="20.5"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cr9-oM-e7q" customClass="CosmosView" customModule="Cosmos">
                                                 <rect key="frame" x="0.0" y="0.0" width="120" height="20.5"/>
@@ -238,7 +238,7 @@
                                     </stackView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="kks-KF-9dc" firstAttribute="leading" secondItem="3IH-3z-ej0" secondAttribute="leading" constant="62" id="afv-vF-Esd"/>
+                                    <constraint firstItem="kks-KF-9dc" firstAttribute="leading" secondItem="3IH-3z-ej0" secondAttribute="leading" id="afv-vF-Esd"/>
                                     <constraint firstItem="Tdh-YD-SK1" firstAttribute="leading" secondItem="3IH-3z-ej0" secondAttribute="leading" constant="13" id="sxe-lr-pWB"/>
                                 </constraints>
                             </stackView>
@@ -252,13 +252,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="3IH-3z-ej0" secondAttribute="trailing" constant="-1" id="0Bd-kH-ho2"/>
                             <constraint firstItem="3IH-3z-ej0" firstAttribute="centerX" secondItem="ZF2-2V-XzR" secondAttribute="centerX" id="1cd-WS-wrV"/>
                             <constraint firstItem="txX-j0-I48" firstAttribute="top" secondItem="ZF2-2V-XzR" secondAttribute="bottom" constant="291" id="Df0-9q-ubD"/>
                             <constraint firstItem="ZF2-2V-XzR" firstAttribute="top" secondItem="3IH-3z-ej0" secondAttribute="bottom" constant="7.5" id="IUg-pE-Y9C"/>
                             <constraint firstItem="ZF2-2V-XzR" firstAttribute="leading" secondItem="CSg-WI-RmY" secondAttribute="leadingMargin" constant="-16" id="dMf-Up-VjE"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ZF2-2V-XzR" secondAttribute="trailing" constant="-16" id="go2-Sq-eYA"/>
                             <constraint firstItem="3IH-3z-ej0" firstAttribute="top" secondItem="3Xs-uI-VRc" secondAttribute="bottom" constant="8" symbolic="YES" id="oJ8-px-yDy"/>
-                            <constraint firstItem="3IH-3z-ej0" firstAttribute="leading" secondItem="CSg-WI-RmY" secondAttribute="leadingMargin" constant="79" id="zSX-Xi-grT"/>
+                            <constraint firstItem="3IH-3z-ej0" firstAttribute="leading" secondItem="CSg-WI-RmY" secondAttribute="leadingMargin" id="zSX-Xi-grT"/>
                         </constraints>
                     </view>
                     <connections>
