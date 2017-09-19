@@ -19,6 +19,9 @@ target 'Itinerant' do
   pod 'Firebase/Auth'
   pod 'Firebase/Storage'
 
+  #UI
+  pod 'Cosmos'
+
   target 'ItinerantTests' do
     inherit! :search_paths
     # Pods for testing

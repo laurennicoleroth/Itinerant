@@ -1,4 +1,5 @@
 PODS:
+  - Cosmos (11.0.3)
   - Firebase/Auth (4.0.4):
     - Firebase/Core
     - FirebaseAuth (= 4.0.0)
@@ -61,6 +62,7 @@ PODS:
   - RxSwift (3.6.1)
 
 DEPENDENCIES:
+  - Cosmos
   - Firebase/Auth
   - Firebase/Database
   - Firebase/Storage
@@ -71,6 +73,7 @@ DEPENDENCIES:
   - RxSwift
 
 SPEC CHECKSUMS:
+  Cosmos: eb506859929f4add2d2aec822a27efb2f718a95d
   Firebase: 1492bf04e1b73a7353b4fb2cf5a20bac9692f341
   FirebaseAnalytics: ad41720e3e67fc63fbe3d2948d3e26932a8de311
   FirebaseAuth: ebb6abcbabae00fc47446d690c19ce68d8484fde
@@ -87,6 +90,6 @@ SPEC CHECKSUMS:
   RxGoogleMaps: a0968a520060bf087e26b7b830d9156822ee1254
   RxSwift: f9de85ea20cd2f7716ee5409fc13523dc638e4e4
 
-PODFILE CHECKSUM: 98bb6ddda33409ba16a30034086153176d96ee66
+PODFILE CHECKSUM: 2b7b25357b630ecd313a3c5590fbd7ee7defc0de
 
 COCOAPODS: 1.2.1
