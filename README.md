@@ -1,5 +1,5 @@
 # Itinerant 
-![image-alt](https://github.com/laurennicoleroth/Itinerant/blob/readme/screenshots/image1.png)
+![image-alt](https://github.com/laurennicoleroth/Itinerant/blob/readme/screenshots/image1.png | width=100)
 
 ## Getting Started
 
