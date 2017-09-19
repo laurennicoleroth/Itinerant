@@ -40,8 +40,6 @@ class PlacesViewController: UIViewController, CLLocationManagerDelegate {
     
     self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
     
-    placeObjects = fetchPlaces()
-    
     if placeObjects.count > 0 {
       getStartedView.isHidden = true
       centerOnLastAdded()
@@ -50,6 +48,15 @@ class PlacesViewController: UIViewController, CLLocationManagerDelegate {
        locationManager.requestLocation()
     }
     
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    placeObjects = fetchPlaces()
+    addMarkersToMap(places: placeObjects)
+    
+    if placeObjects.count > 0 {
+      getStartedView.isHidden = true
+    }
   }
   
   func centerOnLastAdded() {
@@ -285,6 +292,38 @@ class PlacesViewController: UIViewController, CLLocationManagerDelegate {
     
     return alertController
   }
+  
+  @IBAction func clearTripTouched(_ sender: Any) {
+    
+    mapView.clear()
+    
+    guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+      return
+    }
+    
+    let managedContext = appDelegate.persistentContainer.viewContext
+    let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "ManagedPlace")
+    
+    let result = try? managedContext.fetch(fetchRequest)
+    let resultData = result as! [ManagedPlace]
+    
+    for object in resultData {
+      managedContext.delete(object)
+      
+      placeObjects = self.placeObjects.filter { $0 != object }
+    }
+    
+    do {
+      try managedContext.save()
+      print("saved!")
+    } catch let error as NSError  {
+      print("Could not save \(error), \(error.userInfo)")
+    } catch {
+      
+    }
+    
+  }
+  
   
   //Location manager 
   func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {

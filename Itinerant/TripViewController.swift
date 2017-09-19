@@ -13,8 +13,7 @@ import GooglePlaces
 import GoogleMaps
 
 class TripViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-  
-//  var places : [Place] = []
+
   var placeViewController: PlaceDetailsViewController? = nil
   var placeObjects: [NSManagedObject] = []
   
@@ -56,6 +55,7 @@ class TripViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     do {
       placeObjects = try managedContext.fetch(fetchRequest)
+      tableView.reloadData()
       
       print("Retrieved ", placeObjects.count, " places")
   
@@ -233,9 +233,48 @@ class TripViewController: UIViewController, UITableViewDelegate, UITableViewData
       
       self.placeObjects.remove(at: indexPath.row)
       self.tableView.deleteRows(at: [indexPath], with: .automatic)
+      
       self.tableView.reloadData()
     }
   }
+  
+  @IBAction func clearTripTouched(_ sender: Any) {
+    
+    for place in placeObjects {
+      deletePlace(place: place)
+    }
+    
+    placeObjects = []
+    tableView.reloadData()
+  }
+  
+  func deletePlace(place: NSManagedObject) {
+    guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+      return
+    }
+    
+    let managedContext = appDelegate.persistentContainer.viewContext
+    let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "ManagedPlace")
+    
+    let result = try? managedContext.fetch(fetchRequest)
+    let resultData = result as! [ManagedPlace]
+    
+    for object in resultData {
+      managedContext.delete(object)
+      
+      placeObjects = self.placeObjects.filter { $0 != object }
+    }
+    
+    do {
+      try managedContext.save()
+      print("saved!")
+    } catch let error as NSError  {
+      print("Could not save \(error), \(error.userInfo)")
+    } catch {
+      
+    }
+  }
+  
   
   // MARK: - Segues
   
@@ -261,8 +300,8 @@ extension TripViewController: GMSAutocompleteViewControllerDelegate {
       
       let newPlace = Place(place: place)
       newPlace.savePlace()
-
-      self.tableView.reloadData()
+      
+      self.getPlacesFromeCoreData()
       
     })
   }
