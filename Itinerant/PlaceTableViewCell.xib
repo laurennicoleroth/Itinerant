@@ -67,13 +67,9 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="addressLabel" destination="S0U-Ih-YOO" id="szy-VO-ojh"/>
                 <outlet property="name" destination="BZd-Js-TXn" id="JvR-OS-Koc"/>
-                <outlet property="nameLabel" destination="BZd-Js-TXn" id="wNv-XJ-9JV"/>
                 <outlet property="openNowLabel" destination="X37-jf-HDT" id="062-gZ-52L"/>
                 <outlet property="rating" destination="aw6-DC-B7x" id="pV5-z5-kca"/>
-                <outlet property="starRating" destination="aw6-DC-B7x" id="xvt-lP-yXe"/>
-                <outlet property="starRatingView" destination="aw6-DC-B7x" id="tv3-Pd-Ype"/>
             </connections>
             <point key="canvasLocation" x="-12.5" y="30"/>
         </tableViewCell>

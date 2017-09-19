@@ -176,6 +176,7 @@ class TripViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     
     let place = placesArray[indexPath.row]
+    cell.name.text = "Placeholder"
     
     return cell
   }
