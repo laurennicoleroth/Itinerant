@@ -1,4 +1,12 @@
 # Itinerant
+
+Itinerant is for people who like to plan trips! The idea is, say, if you are going to Paris and have a ton of places you want to see, you can just add them to the map. Once you add them to the map, you can view some more details in a tableview, reorder them, and then click one of them to send to your traveling companion!
+
+Future plans for Itinerant: add directions calculations and pathing from ordered places. For now you can send a vcard of an individual place, but the next step is to persist places/trips on more than just CoreData. I hooked up Firebase login with this in mind. I will probably add a "Get Directions" feature that assembles your itinerary in the order you added the places. The next step after that would be to add helpers for the most efficient path through the places, then give you a map with the whole thing drawn out for you. Eventually I'd hook up url-schemes, etc.. to make the whole itinerary shareable through the UIActivityViewController.
+
+Here are some screenshots!
+
+![signin-signup-firebase](https://github.com/laurennicoleroth/Itinerant/blob/readme/screenshots/image5.png)
 ![where-to-screenshot](https://github.com/laurennicoleroth/Itinerant/blob/readme/screenshots/image1.png)
 ![where-to-screenshot](https://github.com/laurennicoleroth/Itinerant/blob/readme/screenshots/image2.png)
 ![where-to-screenshot](https://github.com/laurennicoleroth/Itinerant/blob/readme/screenshots/image3.png)
@@ -6,77 +14,43 @@
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+Itinerant uses pods, so pod install. One file is missing, on purpose, and that is the Keys.plist file.
+
+```Swift
+<key>googleMapsAPIKey</key>
+  <string>Your Google Maps Key</string>
+  <key>googlePlacesAPIKey</key>
+  <string>Your Google Places Key - Be sure to restrict access to com.Itinerant</string>
+```
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
-
-```
-Give examples
-```
+A love of travel and Xcode 8+
 
 ### Installing
 
-A step by step series of examples that tell you have to get a development env running
-
-Say what the step will be
-
 ```
-Give the example
+1. Add that Keys.plist
+2. pod install
+3. open Itinerant.xcworkspace
+4. create an account - name, email, password (persisted on firebase)
+5. accept location sharing
+6. start building an itinerary!
 ```
-
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
-
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags).
+* [RxCocoa](https://github.com/ReactiveX/RxSwift/tree/master/RxCocoa)
+* [RxSwift](https://github.com/ReactiveX/RxSwift)
+* [RxGoogleMaps](https://github.com/RxSwiftCommunity/RxGoogleMaps)
+* [GoogleMaps](https://github.com/googlemaps/)
+* [GooglePlaces](https://developers.google.com/places/ios-api/start)
+* [Firebase](https://firebase.google.com/docs/ios/setup)
+* [Cosmos](https://github.com/evgenyneu/Cosmos)
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+* **Lauren N. Roth** - *Initial work on a bigger idea*
 
 ## License
 
@@ -84,7 +58,4 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* Hat tip to anyone who's code was used
-* Inspiration
-* etc
-
+* Google(Maps/Places/Firebase - thanks!) - UIKit - CoreData - Computers That Fit In Your Pocket
