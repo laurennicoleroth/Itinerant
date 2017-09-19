@@ -70,6 +70,8 @@ class Place {
     place.setValue(self.name, forKeyPath: "name")
     place.setValue(self.placeID, forKey: "placeID")
     place.setValue(self.address, forKey: "address")
+    place.setValue(self.latitude, forKey: "latitude")
+    place.setValue(self.longitude, forKey: "longitude")
     
     do {
       try managedContext.save()
@@ -80,7 +82,7 @@ class Place {
   
   func makeShareable() -> [Any] {
     
-    let placeString = "\(marker.title!): \n\(marker.position.latitude), \(marker.position.longitude)\n"
+    let placeString = "\(marker.title!)\n"
     var objectsToShare = [Any]()
     
     let lat = marker.position.latitude

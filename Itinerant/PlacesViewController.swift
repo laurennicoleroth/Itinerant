@@ -23,22 +23,13 @@ class PlacesViewController: UIViewController {
   
   let disposeBag = DisposeBag()
   let locationManager = CLLocationManager()
+  
   var placeObjects : [NSManagedObject] = []
-  
-  var places : [Place] = [] {
-    didSet {
-      if places.count > 0 {
-        self.title = "Where To Next?"
-        self.buildTripButton.isHidden = false
-      } else {
-        self.title = "Where To?"
-        self.buildTripButton.isHidden = true
-      }
-    }
-  }
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    addMarkersFromCoreData()
     
     self.buildTripButton.isHidden = true
     
@@ -111,10 +102,10 @@ class PlacesViewController: UIViewController {
       Observable.zip(s0, s1) { $0 }
         .subscribe(onNext: { (prev, cur) in
           if let marker = prev {
-            marker.icon = #imageLiteral(resourceName: "locationPin")
+            marker.icon = UIImage(named: "locationPin")
           }
           if let marker = cur {
-            marker.icon = #imageLiteral(resourceName: "locationPin")
+            marker.icon = UIImage(named: "locationPin")
           }
         })
         .addDisposableTo(disposeBag)
@@ -128,11 +119,40 @@ class PlacesViewController: UIViewController {
     centerTheMap(lat: 40.7416089 , lon: -73.9931664)
     
   }
+
+  func addMarkersFromCoreData() {
+    guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+      return
+    }
+    
+    let managedContext = appDelegate.persistentContainer.viewContext
+    let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "ManagedPlace")
+    
+    do {
+      placeObjects = try managedContext.fetch(fetchRequest)
+      
+      print("Retrieved ", placeObjects.count, " places")
+      
+      for placeObject in placeObjects {
+        addMarkerToMap(name: placeObject.value(forKey: "name") as! String, latitude: placeObject.value(forKey: "latitude") as! Double, longitude: placeObject.value(forKey: "longitude") as! Double)
+      }
+    } catch let error as NSError {
+      print("Could not fetch. \(error), \(error.userInfo)")
+    }
+  }
+  
+  func addMarkerToMap(name: String, latitude: Double, longitude: Double) {
+    print("Adding marker to the map ", name, latitude, longitude)
+    let marker = GMSMarker()
+    marker.position = CLLocationCoordinate2DMake(latitude, longitude)
+    marker.title = name
+    marker.icon = UIImage(named: "locationPin")
+    marker.map = mapView
+  }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "buildTripSegue" {
       let destinationVC = segue.destination as! TripViewController
-      destinationVC.places = places
     }
   }
   
@@ -148,7 +168,6 @@ class PlacesViewController: UIViewController {
     
   }
   
-  
   func centerTheMap(lat : Double, lon: Double) {
     let center = CLLocationCoordinate2D(latitude: lat, longitude: lon)
     
@@ -161,7 +180,7 @@ class PlacesViewController: UIViewController {
     circle.title = "Circle"
     circle.radius = 200
     circle.isTappable = true
-    circle.position = (places.first?.marker.position)!
+//    circle.position = (places.first?.marker.position)!
     circle.fillColor = UIColor.green.withAlphaComponent(0.2)
     circle.strokeColor = UIColor.green.withAlphaComponent(0.8)
     circle.strokeWidth = 4
@@ -175,7 +194,7 @@ class PlacesViewController: UIViewController {
       print("Remove from \(String(describing: marker.title)) from map.")
       marker.map = nil
       
-      self.places = self.places.filter { $0.marker != marker }
+//      self.places = self.places.filter { $0.marker != marker }
       
     }
     
@@ -205,7 +224,7 @@ extension PlacesViewController: GMSAutocompleteViewControllerDelegate {
       
       newPlace.savePlace()
       
-      self.places.append(newPlace)
+//      self.places.append(newPlace)
       
       self.centerTheMap(lat: marker.position.latitude, lon: marker.position.longitude)
     })
