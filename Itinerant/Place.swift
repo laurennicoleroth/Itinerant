@@ -68,10 +68,15 @@ class Place {
     let place = NSManagedObject(entity: entity, insertInto: managedContext)
     
     place.setValue(self.name, forKeyPath: "name")
-    place.setValue(self.placeID, forKey: "placeID")
-    place.setValue(self.address, forKey: "address")
+    place.setValue(self.rating, forKeyPath: "rating")
     place.setValue(self.latitude, forKey: "latitude")
     place.setValue(self.longitude, forKey: "longitude")
+    place.setValue(self.placeID, forKey: "placeID")
+    place.setValue(self.priceLevel, forKey: "priceLevel")
+    place.setValue(self.website, forKey: "website")
+    place.setValue(self.phoneNumber, forKey: "phoneNumber")
+    place.setValue(self.address, forKey: "address")
+    
     
     do {
       try managedContext.save()
