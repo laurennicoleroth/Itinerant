@@ -24,15 +24,19 @@ class PlacesViewController: UIViewController {
   let disposeBag = DisposeBag()
   let locationManager = CLLocationManager()
   
-  var placeObjects : [NSManagedObject] = []
+  var placeObjects : [NSManagedObject] = [] {
+    didSet {
+      fitMapToPlaces()
+    }
+  }
 
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    addMarkersFromCoreData()
-    
     self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
-  
+    
+    addMarkersFromCoreData()
+
     mapView.settings.myLocationButton = true
     
     let startLocationManager = mapView.rx.didTapMyLocationButton.take(1).publish()
@@ -193,6 +197,21 @@ class PlacesViewController: UIViewController {
     
     performSegue(withIdentifier: "buildTripSegue", sender: nil)
     
+  }
+  
+  func fitMapToPlaces() {
+    let path = GMSMutablePath()
+    for var place in placeObjects
+    {
+      let marker = GMSMarker()
+      let latitude = place.value(forKey: "latitude") as! Double
+      let longitude = place.value(forKey: "latitude") as! Double
+      marker.position = CLLocationCoordinate2DMake(latitude, longitude)
+      path.add(marker.position)
+      marker.map = self.mapView
+    }
+    let bounds = GMSCoordinateBounds(path: path)
+    self.mapView!.animate(with: GMSCameraUpdate.fit(bounds, withPadding: 30.0))
   }
   
   func centerTheMap(lat : Double, lon: Double) {

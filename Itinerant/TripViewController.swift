@@ -28,7 +28,9 @@ class TripViewController: UIViewController, UITableViewDelegate, UITableViewData
     super.viewDidLoad()
     
     self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
-    self.title = "Add To Or Re-Order Your Trip"
+    
+
+    self.title = "Organize Your Trip"
     
     navbarSetup()
     tableGestureSetup()
