@@ -197,7 +197,7 @@ class TripViewController: UIViewController, UITableViewDelegate, UITableViewData
     let cell = tableView.dequeueReusableCell(withIdentifier: "PlaceCell", for: indexPath) as! PlaceTableViewCell
     
     let placeObject = placeObjects[indexPath.row]
-    cell.nameLabel?.text = "\(indexPath.row + 1)" + (placeObject.value(forKey: "name") as? String)!
+    cell.nameLabel?.text = "\(indexPath.row + 1). " + (placeObject.value(forKey: "name") as? String)!
     cell.addressLabel.text = placeObject.value(forKey: "address") as? String
     cell.starRatingView.rating = placeObject.value(forKey: "rating") as! Double
     
