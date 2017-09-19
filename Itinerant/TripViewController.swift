@@ -176,8 +176,6 @@ class TripViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     
     let place = placesArray[indexPath.row]
-    cell.placeNameLabel.text = "\(indexPath.row + 1). " + place.place.name
-    cell.placeAddressLabel.text = place.place.formattedAddress
     
     return cell
   }
