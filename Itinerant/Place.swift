@@ -76,6 +76,7 @@ class Place {
     place.setValue(self.website, forKey: "website")
     place.setValue(self.phoneNumber, forKey: "phoneNumber")
     place.setValue(self.address, forKey: "address")
+    place.setValue(self.openNow, forKey: "openNow")
     
     
     do {
