@@ -24,9 +24,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lsV-oB-Szg">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="lsV-oB-Szg">
                                 <rect key="frame" x="-4" y="-44" width="383" height="711"/>
-                                <color key="backgroundColor" red="0.26943403389999998" green="0.34509587470000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="clouds" translatesAutoresizingMaskIntoConstraints="NO" id="kFJ-3P-cJw">
                                 <rect key="frame" x="-153" y="567" width="750" height="100"/>
@@ -244,20 +243,44 @@
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZF2-2V-XzR" customClass="GMSMapView">
                                 <rect key="frame" x="0.0" y="161" width="375" height="215"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.61176470589999998" green="0.61176470589999998" blue="0.61176470589999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="215" id="BlQ-4E-FoT"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y0e-26-54M">
+                                <rect key="frame" x="0.0" y="376" width="375" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="bAU-ik-xDS"/>
+                                </constraints>
+                                <state key="normal" title="Share This Place" backgroundImage="background">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="shareThisPlaceTouched:" destination="k8I-yC-Mob" eventType="touchUpInside" id="85o-CJ-cgx"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phone Number" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xYL-o8-fmn">
+                                <rect key="frame" x="16" y="424" width="343" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="3IH-3z-ej0" secondAttribute="trailing" constant="-1" id="0Bd-kH-ho2"/>
                             <constraint firstItem="3IH-3z-ej0" firstAttribute="centerX" secondItem="ZF2-2V-XzR" secondAttribute="centerX" id="1cd-WS-wrV"/>
+                            <constraint firstItem="xYL-o8-fmn" firstAttribute="top" secondItem="Y0e-26-54M" secondAttribute="bottom" constant="8" id="Bfu-l8-vyl"/>
                             <constraint firstItem="txX-j0-I48" firstAttribute="top" secondItem="ZF2-2V-XzR" secondAttribute="bottom" constant="291" id="Df0-9q-ubD"/>
+                            <constraint firstItem="Y0e-26-54M" firstAttribute="top" secondItem="ZF2-2V-XzR" secondAttribute="bottom" id="FHr-Gz-jmY"/>
                             <constraint firstItem="ZF2-2V-XzR" firstAttribute="top" secondItem="3IH-3z-ej0" secondAttribute="bottom" constant="7.5" id="IUg-pE-Y9C"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="xYL-o8-fmn" secondAttribute="trailing" id="NG4-a4-9Pl"/>
                             <constraint firstItem="ZF2-2V-XzR" firstAttribute="leading" secondItem="CSg-WI-RmY" secondAttribute="leadingMargin" constant="-16" id="dMf-Up-VjE"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ZF2-2V-XzR" secondAttribute="trailing" constant="-16" id="go2-Sq-eYA"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="xYL-o8-fmn" secondAttribute="leading" id="h5n-YN-8z5"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Y0e-26-54M" secondAttribute="trailing" constant="-16" id="hFI-QJ-4eg"/>
+                            <constraint firstItem="Y0e-26-54M" firstAttribute="leading" secondItem="CSg-WI-RmY" secondAttribute="leadingMargin" constant="-16" id="inr-pH-Dv4"/>
                             <constraint firstItem="3IH-3z-ej0" firstAttribute="top" secondItem="3Xs-uI-VRc" secondAttribute="bottom" constant="8" symbolic="YES" id="oJ8-px-yDy"/>
                             <constraint firstItem="3IH-3z-ej0" firstAttribute="leading" secondItem="CSg-WI-RmY" secondAttribute="leadingMargin" id="zSX-Xi-grT"/>
                         </constraints>
@@ -265,6 +288,8 @@
                     <connections>
                         <outlet property="addressLabel" destination="kks-KF-9dc" id="b3D-Wd-rBh"/>
                         <outlet property="mapView" destination="ZF2-2V-XzR" id="hLt-5S-1Bb"/>
+                        <outlet property="openNowLabel" destination="4IT-aY-ymT" id="M08-0S-JVc"/>
+                        <outlet property="phoneNumberLabel" destination="xYL-o8-fmn" id="9jw-oU-m4L"/>
                         <outlet property="placeNameLabel" destination="Tdh-YD-SK1" id="dQt-lJ-FUA"/>
                     </connections>
                 </viewController>
@@ -302,7 +327,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="T67-Kp-Pdr">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="T67-Kp-Pdr">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" red="0.26943403389999998" green="0.34509587470000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
@@ -705,6 +730,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="background" width="375" height="667"/>
         <image name="button" width="60" height="20"/>
         <image name="cellbackground" width="150" height="150"/>
         <image name="clouds" width="750" height="110"/>
