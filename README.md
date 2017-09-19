@@ -1,5 +1,8 @@
-# Itinerant 
-![image-alt](https://github.com/laurennicoleroth/Itinerant/blob/readme/screenshots/image1.png | width=100)
+# Itinerant
+![where-to-screenshot](https://github.com/laurennicoleroth/Itinerant/blob/readme/screenshots/image1.png | width=48)
+![where-to-screenshot](https://github.com/laurennicoleroth/Itinerant/blob/readme/screenshots/image2.png | width=48)
+![where-to-screenshot](https://github.com/laurennicoleroth/Itinerant/blob/readme/screenshots/image3.png | width=48)
+![where-to-screenshot](https://github.com/laurennicoleroth/Itinerant/blob/readme/screenshots/image4.png | width=48)
 
 ## Getting Started
 
@@ -67,7 +70,7 @@ Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c6
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags).
 
 ## Authors
 
