@@ -142,28 +142,6 @@ class PlacesViewController: UIViewController {
     present(autocompleteController, animated: true, completion: nil)
   }
   
-  func savePlace(googlePlace: GMSPlace) {
-    guard let appDelegate =
-      UIApplication.shared.delegate as? AppDelegate else {
-        return
-    }
-    
-    let managedContext = appDelegate.persistentContainer.viewContext
-    let entity = NSEntityDescription.entity(forEntityName: "ManagedPlace", in: managedContext)!
-    let place = NSManagedObject(entity: entity, insertInto: managedContext)
-    
-    place.setValue(googlePlace.name, forKeyPath: "name")
-    place.setValue(googlePlace.placeID, forKey: "placeID")
-    place.setValue(googlePlace.formattedAddress, forKey: "address")
-    
-    do {
-      try managedContext.save()
-      placeObjects.append(place)
-    } catch let error as NSError {
-      print("Could not save. \(error), \(error.userInfo)")
-    }
-  }
-  
   @IBAction func makeTripButtonTouched(_ sender: Any) {
     
     performSegue(withIdentifier: "buildTripSegue", sender: nil)
@@ -221,11 +199,11 @@ extension PlacesViewController: GMSAutocompleteViewControllerDelegate {
     
     dismiss(animated: true, completion: {
       
-      self.savePlace(googlePlace: place)
-      
       let newPlace = Place(place: place)
       let marker = newPlace.marker
       marker.map = self.mapView
+      
+      newPlace.savePlace()
       
       self.places.append(newPlace)
       

@@ -9,6 +9,7 @@
 import Foundation
 import GooglePlaces
 import GoogleMaps
+import CoreData
 
 class Place {
 
@@ -53,6 +54,27 @@ class Place {
       self.openNow = true
     } else {
       self.openNow = false
+    }
+  }
+  
+  func savePlace() {
+    guard let appDelegate =
+      UIApplication.shared.delegate as? AppDelegate else {
+        return
+    }
+    
+    let managedContext = appDelegate.persistentContainer.viewContext
+    let entity = NSEntityDescription.entity(forEntityName: "ManagedPlace", in: managedContext)!
+    let place = NSManagedObject(entity: entity, insertInto: managedContext)
+    
+    place.setValue(self.name, forKeyPath: "name")
+    place.setValue(self.placeID, forKey: "placeID")
+    place.setValue(self.address, forKey: "address")
+    
+    do {
+      try managedContext.save()
+    } catch let error as NSError {
+      print("Could not save. \(error), \(error.userInfo)")
     }
   }
   
