@@ -13,12 +13,17 @@ class PlaceDetailsViewController: UIViewController, GMSMapViewDelegate{
   
   var place: Place?
   
+  @IBOutlet var placeNameLabel: UILabel!
+  
+  @IBOutlet var addressLabel: UILabel!
   
   override func viewDidLoad() {
     
     super.viewDidLoad()
     
-
+    placeNameLabel.text = place?.name
+    addressLabel.text = place?.address
+    
     
   }
   
