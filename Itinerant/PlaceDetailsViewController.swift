@@ -12,12 +12,14 @@ import GoogleMaps
 class PlaceDetailsViewController: UIViewController, GMSMapViewDelegate{
   
   var place: Place?
+  let photoURL = "https://maps.googleapis.com/maps/api/place/photo"
   
   @IBOutlet var placeNameLabel: UILabel!
   @IBOutlet var addressLabel: UILabel!
   @IBOutlet var mapView: GMSMapView!
   @IBOutlet var openNowLabel: UILabel!
   @IBOutlet var phoneNumberLabel: UILabel!
+  @IBOutlet var placeImage: UIImageView!
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -31,6 +33,8 @@ class PlaceDetailsViewController: UIViewController, GMSMapViewDelegate{
     placeNameLabel.text = place?.name
     addressLabel.text = place?.address
     phoneNumberLabel.text = place?.phoneNumber
+    
+    setPhoto(string: )
     
     if place?.openNow == true {
       openNowLabel.text = "OPEN"
@@ -49,7 +53,6 @@ class PlaceDetailsViewController: UIViewController, GMSMapViewDelegate{
       marker?.map = mapView
     }
   }
-
   
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
