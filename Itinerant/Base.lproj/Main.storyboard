@@ -202,6 +202,14 @@
                                     <outlet property="delegate" destination="NSu-Wz-oIh" id="tq3-fb-FI0"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jyW-nh-Q2W">
+                                <rect key="frame" x="100" y="318" width="110" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Clear Trip"/>
+                                <connections>
+                                    <action selector="clearTripTouched:" destination="NSu-Wz-oIh" eventType="touchUpInside" id="DIi-fP-DXy"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
