@@ -173,8 +173,7 @@ class TripViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     let cell = tableView.dequeueReusableCell(withIdentifier: "PlaceCell", for: indexPath) as! PlaceTableViewCell
     
-    let place = places[indexPath.row]
-    
+    cell.setup(place: places[indexPath.row])
     
     return cell
   }
