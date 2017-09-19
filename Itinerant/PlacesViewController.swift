@@ -31,8 +31,6 @@ class PlacesViewController: UIViewController {
     
     addMarkersFromCoreData()
     
-    self.buildTripButton.isHidden = true
-    
     self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
   
     mapView.settings.myLocationButton = true
@@ -132,6 +130,9 @@ class PlacesViewController: UIViewController {
       placeObjects = try managedContext.fetch(fetchRequest)
       
       print("Retrieved ", placeObjects.count, " places")
+      if placeObjects.count > 1 {
+        buildTripButton.isHidden = false
+      }
       
       for placeObject in placeObjects {
         addMarkerToMap(name: placeObject.value(forKey: "name") as! String, latitude: placeObject.value(forKey: "latitude") as! Double, longitude: placeObject.value(forKey: "longitude") as! Double)

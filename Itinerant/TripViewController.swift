@@ -14,7 +14,7 @@ import GoogleMaps
 
 class TripViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
   
-  var places : [Place] = []
+//  var places : [Place] = []
   var placeViewController: PlaceDetailsViewController? = nil
   var placeObjects: [NSManagedObject] = []
   
@@ -33,6 +33,8 @@ class TripViewController: UIViewController, UITableViewDelegate, UITableViewData
     navbarSetup()
     tableGestureSetup()
     
+    getPlacesFromeCoreData()
+    
     tableView.register(UINib(nibName: "PlaceTableViewCell", bundle: nil), forCellReuseIdentifier: "PlaceCell")
     
   }
@@ -40,6 +42,24 @@ class TripViewController: UIViewController, UITableViewDelegate, UITableViewData
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
+  }
+  
+  func getPlacesFromeCoreData() {
+    guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+      return
+    }
+    
+    let managedContext = appDelegate.persistentContainer.viewContext
+    let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "ManagedPlace")
+    
+    do {
+      placeObjects = try managedContext.fetch(fetchRequest)
+      
+      print("Retrieved ", placeObjects.count, " places")
+  
+    } catch let error as NSError {
+      print("Could not fetch. \(error), \(error.userInfo)")
+    }
   }
   
   func navbarSetup() {
@@ -54,28 +74,6 @@ class TripViewController: UIViewController, UITableViewDelegate, UITableViewData
     let longpress = UILongPressGestureRecognizer(target: self, action: #selector(TripViewController.longPressGestureRecognized(_:)))
     
     tableView.addGestureRecognizer(longpress)
-  }
-  
-  func savePlace(googlePlace: GMSPlace) {
-    guard let appDelegate =
-      UIApplication.shared.delegate as? AppDelegate else {
-        return
-    }
-
-    let managedContext = appDelegate.persistentContainer.viewContext
-    let entity = NSEntityDescription.entity(forEntityName: "Place", in: managedContext)!
-    let place = NSManagedObject(entity: entity, insertInto: managedContext)
-
-    place.setValue(googlePlace.name, forKeyPath: "name")
-    place.setValue(googlePlace.placeID, forKey: "placeID")
-    place.setValue(googlePlace.formattedAddress, forKey: "address")
-
-    do {
-      try managedContext.save()
-      placeObjects.append(place)
-    } catch let error as NSError {
-      print("Could not save. \(error), \(error.userInfo)")
-    }
   }
   
   func insertNewObject(_ sender: Any) {
@@ -140,7 +138,7 @@ class TripViewController: UIViewController, UITableViewDelegate, UITableViewData
         My.cellSnapshot!.center = center
         
         if ((indexPath != nil) && (indexPath != Path.initialIndexPath)) {
-          places.insert(places.remove(at: Path.initialIndexPath!.row), at: indexPath!.row)
+          placeObjects.insert(placeObjects.remove(at: Path.initialIndexPath!.row), at: indexPath!.row)
           tableView.moveRow(at: Path.initialIndexPath!, to: indexPath!)
           Path.initialIndexPath = indexPath
           tableView.reloadData()
@@ -217,7 +215,7 @@ class TripViewController: UIViewController, UITableViewDelegate, UITableViewData
   func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
     if editingStyle == .delete {
       
-      self.places.remove(at: indexPath.row)
+      self.placeObjects.remove(at: indexPath.row)
       self.tableView.deleteRows(at: [indexPath], with: .automatic)
       self.tableView.reloadData()
     }
@@ -231,7 +229,7 @@ class TripViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         let placeVC = segue.destination as! PlaceDetailsViewController
         
-        placeVC.place = places[indexPath.row]
+//        placeVC.place = placeObjects[indexPath.row]
       }
     }
   }
@@ -244,8 +242,9 @@ extension TripViewController: GMSAutocompleteViewControllerDelegate {
     
     dismiss(animated: true, completion: {
       
-      let place = Place(place: place)
-      self.places.append(place)
+      let newPlace = Place(place: place)
+      newPlace.savePlace()
+
       self.tableView.reloadData()
       
     })
