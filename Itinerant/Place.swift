@@ -9,7 +9,6 @@
 import Foundation
 import GooglePlaces
 import GoogleMaps
-import SwiftyJSON
 
 class Place {
 

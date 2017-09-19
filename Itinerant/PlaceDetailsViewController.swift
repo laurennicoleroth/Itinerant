@@ -59,11 +59,11 @@ class PlaceDetailsViewController: UIViewController, GMSMapViewDelegate{
     
     if let path = Bundle.main.path(forResource: "Keys", ofType: "plist"),
       let keys = NSDictionary(contentsOfFile: path),
-      let googleMapsKey = keys["googleMapsAPIKey"] as? String
+      let googleKey = keys["googlePlacesAPIKey"] as? String
     {
       let params : [String:AnyObject] = ["maxwidth" : 500 as AnyObject,
                                          "photoreference": "\(place.photoReference)" as AnyObject,
-                                         "key" : googleMapsKey as AnyObject]
+                                         "key" : googleKey as AnyObject]
       
       Alamofire.request(.GET, photoURL, parameters: params ).response{ (request, response, dataIn, error) in
         
