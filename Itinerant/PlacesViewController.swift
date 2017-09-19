@@ -42,13 +42,9 @@ class PlacesViewController: UIViewController, CLLocationManagerDelegate {
     
     placeObjects = fetchPlaces()
     
-    
     if placeObjects.count > 0 {
-      
       getStartedView.isHidden = true
-      
       centerOnLastAdded()
-      
       addMarkersToMap(places: placeObjects)
     } else {
        locationManager.requestLocation()
@@ -57,12 +53,13 @@ class PlacesViewController: UIViewController, CLLocationManagerDelegate {
   }
   
   func centerOnLastAdded() {
-    let last = placeObjects.last
-    let latitude = last?.value(forKey: "latitude") as! Double
-    let longitude = last?.value(forKey: "longitude") as! Double
-    
-    centerTheMap(lat: latitude, lon: longitude)
-    
+    if let last = placeObjects.last {
+      let latitude = last.value(forKey: "latitude") as! Double
+      let longitude = last.value(forKey: "longitude") as! Double
+      
+      centerTheMap(lat: latitude, lon: longitude)
+    }
+
   }
   
   func addReactiveMapHandlers() {
