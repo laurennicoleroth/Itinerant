@@ -180,10 +180,10 @@
             </objects>
             <point key="canvasLocation" x="3864.8000000000002" y="795.6521739130435"/>
         </scene>
-        <!--View Controller-->
+        <!--Place Details View Controller-->
         <scene sceneID="Y8g-Gz-tQ0">
             <objects>
-                <viewController id="k8I-yC-Mob" sceneMemberID="viewController">
+                <viewController id="k8I-yC-Mob" customClass="PlaceDetailsViewController" customModule="Itinerant" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3Xs-uI-VRc"/>
                         <viewControllerLayoutGuide type="bottom" id="txX-j0-I48"/>
