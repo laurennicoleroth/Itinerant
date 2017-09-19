@@ -158,9 +158,8 @@ class PlacesViewController: UIViewController, CLLocationManagerDelegate {
     
     for object in resultData {
       managedContext.delete(object)
-      if let i = placeObjects.index(where: { $0 == object }) {
-        placeObjects.remove(at: i)
-      }
+   
+      placeObjects = self.placeObjects.filter { $0 != object }
     }
 
     do {
