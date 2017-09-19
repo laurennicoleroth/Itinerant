@@ -1,6 +1,6 @@
 # Itinerant
 
-Itinerant is for people who like to plan trips! The idea is, say, if you are going to Paris and have a ton of places you want to see, you can just add them to the map. Once you add them to the map, you can view some more details in a tableview, reorder them, and then click one of them to send to your traveling companion!
+Itinerant is for people who like to plan trips! So say your going to Paris, or another wonderful place in the world, and have a ton of places you want to see. You can just add them to the map. Once you add them to the map, you can view some more details in a tableview, reorder them, and then click one of them to send to your traveling companion!
 
 Future plans for Itinerant: add directions calculations and pathing from ordered places. For now you can send a vcard of an individual place, but the next step is to persist places/trips on more than just CoreData. I hooked up Firebase login with this in mind. I will probably add a "Get Directions" feature that assembles your itinerary in the order you added the places. The next step after that would be to add helpers for the most efficient path through the places, then give you a map with the whole thing drawn out for you. Eventually I'd hook up url-schemes, etc.. to make the whole itinerary shareable through the UIActivityViewController.
 
