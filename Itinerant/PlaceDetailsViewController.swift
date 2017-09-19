@@ -8,105 +8,93 @@
 
 import UIKit
 import GoogleMaps
+import GooglePlaces
 
 class PlaceDetailsViewController: UIViewController, GMSMapViewDelegate{
   
   var place: Place?
-  @IBOutlet var placeImageView: UIImageView!
-  @IBOutlet var placeName: UILabel!
-  @IBOutlet var placeRating: UILabel!
-//  @IBOutlet var mapView: GMSMapView!
-  @IBOutlet var address: UILabel!
-  @IBOutlet var starRating: UIImageView!
+  
+  @IBOutlet var placeNameLabel: UILabel!
+  @IBOutlet var addressLabel: UILabel!
+  @IBOutlet var mapView: GMSMapView!
+  @IBOutlet var openNowLabel: UILabel!
+  @IBOutlet var phoneNumberLabel: UILabel!
+  @IBOutlet var placeImage: UIImageView!
   
   override func viewDidLoad() {
-    
     super.viewDidLoad()
-    
-    placeName.numberOfLines = 3
-    
-    if let place = place {
-      
-      //Set navigation title
-      self.navigationItem.title = place.name
-      
-      //Set place details
-      placeName.text = place.name
-      placeRating.text = "\(place.rating)"
-//      starRating.image = StarRating.rating(place.rating)
-      
-      if let address = place.address {
-        self.address.text = address
-      }
-      
-      
-//      if (place.photo == nil) {
-//        let params : [String:AnyObject] = ["maxwidth" : 500 as AnyObject,
-//                                           "photoreference": "\(place.photoReference)" as AnyObject,
-//                                           "key" : Constants.Keys.GoogleKey as AnyObject]
-//        
-//        Alamofire.request(.GET, Constants.Url.GoogleApiPlaceSearchPhoto, parameters: params ).response{ (request, response, dataIn, error) in
-//          
-//          
-//          //get back to main thread
-//          DispatchQueue.main.async { [unowned self] in
-//            if let imageData = dataIn {
-//              self.placeImageView.image = UIImage(data: imageData)
-//            }
-//          }
-//        }
-//      }
-//      else{
-//        placeImageView.image = place.photo
-//      }
-      
-      
-      //Display map
-      let coordinates : CLLocationCoordinate2D = CLLocationCoordinate2DMake(place.latitude, place.longitude)
-      
-      let camera : GMSCameraPosition = GMSCameraPosition(target:coordinates, zoom:15, bearing:0, viewingAngle:0)
-      
-      self.mapView.camera = camera
-      self.mapView.myLocationEnabled = true
-      self.mapView.delegate = self;
-      
-      let marker : GMSMarker = GMSMarker()
-      marker.position = coordinates
-      marker.title = place.name
-      marker.icon =  UIImage(named:"locationPin")
-      marker.map = self.mapView;
-      
-    }
     
   }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
+    self.title = "Place Details"
     
-    //customize navigation bar
-    self.navigationController?.navigationBar.barTintColor = UIColor.white
-    self.navigationController?.navigationBar.tintColor = UIColor.gray
+    placeNameLabel.text = place?.name
+    addressLabel.text = place?.address
+    phoneNumberLabel.text = place?.phoneNumber
+    
+    if let placeID = place?.placeID {
+      loadFirstPhotoForPlace(placeID: placeID)
+    }
+    
+    if place?.openNow == true {
+      openNowLabel.text = "OPEN"
+      openNowLabel.textColor = UIColor(hue: 0.2778, saturation: 0.93, brightness: 0.62, alpha: 1.0)
+    } else {
+      openNowLabel.text = "CLOSED"
+      openNowLabel.textColor = UIColor.red
+    }
+    
+    
+    if let center : CLLocationCoordinate2D? = CLLocationCoordinate2D(latitude: (place?.latitude)!, longitude: (place?.longitude)!) {
+      let camera = GMSCameraPosition.camera(withLatitude: (center?.latitude)!, longitude: (center?.longitude)!, zoom: 16, bearing: 30, viewingAngle: 45)
+      mapView.camera = camera
+      
+      let marker = place?.marker
+      marker?.map = mapView
+    }
   }
   
-  
-  @IBAction func loadWebsite(_ sender: AnyObject) {
-    
-//    let storyboard = UIStoryboard(name: "Main", bundle: Bundle(for: type(of: self)))
-//    if let webVC = storyboard.instantiateViewController(withIdentifier: "WebViewController") as? WebViewController {
-//      
-//      if let place = place {
-//        webVC.name = place.name
-//        webVC.url = place.website
-//        self.navigationController?.pushViewController(webVC, animated: true)
-//      }
-//    }
-    
+  func loadFirstPhotoForPlace(placeID: String) {
+    GMSPlacesClient.shared().lookUpPhotos(forPlaceID: placeID) { (photos, error) -> Void in
+      if let error = error {
+        // TODO: handle the error.
+        print("Error: \(error.localizedDescription)")
+      } else {
+        if let firstPhoto = photos?.results.first {
+          self.loadImageForMetadata(photoMetadata: firstPhoto)
+        }
+      }
+    }
   }
   
+  func loadImageForMetadata(photoMetadata: GMSPlacePhotoMetadata) {
+    GMSPlacesClient.shared().loadPlacePhoto(photoMetadata, callback: {
+      (photo, error) -> Void in
+      if let error = error {
+        print("Error: \(error.localizedDescription)")
+      } else {
+        self.placeImage.image = photo
+      }
+    })
+  }
   
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
+    
+  }
+  
+  @IBAction func shareThisPlaceTouched(_ sender: Any) {
+    shareThePlace(place: place!)
+  }
+  
+  func shareThePlace(place: Place) {
+    
+    let activityVC = UIActivityViewController(activityItems: place.makeShareable(), applicationActivities: nil)
+    activityVC.popoverPresentationController?.sourceView = self.view
+    
+    self.present(activityVC, animated: true, completion: nil)
   }
   
   

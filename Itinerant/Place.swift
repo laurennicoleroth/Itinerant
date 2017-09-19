@@ -56,7 +56,6 @@ class Place {
     }
   }
   
-  
   func makeShareable() -> [Any] {
     
     let placeString = "\(marker.title!): \n\(marker.position.latitude), \(marker.position.longitude)\n"
