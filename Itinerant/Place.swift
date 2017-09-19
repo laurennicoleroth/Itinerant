@@ -48,7 +48,6 @@ class Place {
     self.website = String(describing: place.website)
     self.phoneNumber = place.phoneNumber
     self.address = place.formattedAddress
-    self.openNow = place.openNowStatus
     
     if place.openNowStatus.rawValue == 2 {
       self.openNow = true
