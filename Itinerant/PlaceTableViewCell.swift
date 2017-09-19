@@ -31,8 +31,9 @@ class PlaceTableViewCell: UITableViewCell {
     self.addressLabel.text = place.address
     self.starRatingView.rating = place.rating!
     
-    if let openNow : GMSPlacesOpenNowStatus = place.openNow {
-      if (openNow == GMSPlacesOpenNowStatus.yes ) {
+    if let open = place.openNow {
+
+      if (open == true) {
         openNowLabel.text = "OPEN"
         openNowLabel.textColor = UIColor(hue: 0.2778, saturation: 0.93, brightness: 0.62, alpha: 1.0)
       } else {

@@ -25,7 +25,7 @@ class Place {
   var website: String?
   var phoneNumber: String?
   var address: String?
-  var openNow: GMSPlacesOpenNowStatus
+  var openNow: Bool?
   
   var marker : GMSMarker {
     get {
@@ -49,6 +49,12 @@ class Place {
     self.phoneNumber = place.phoneNumber
     self.address = place.formattedAddress
     self.openNow = place.openNowStatus
+    
+    if place.openNowStatus.rawValue == 2 {
+      self.openNow = true
+    } else {
+      self.openNow = false
+    }
   }
   
   
