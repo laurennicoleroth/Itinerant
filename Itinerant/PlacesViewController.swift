@@ -16,7 +16,7 @@ import GooglePlaces
 import CoreLocation
 import CoreData
 
-class PlacesViewController: UIViewController {
+class PlacesViewController: UIViewController, CLLocationManagerDelegate {
   
   @IBOutlet weak var mapView: GMSMapView!
   @IBOutlet weak var buildTripButton: UIButton!
@@ -24,16 +24,40 @@ class PlacesViewController: UIViewController {
   let disposeBag = DisposeBag()
   let locationManager = CLLocationManager()
   
-  var placeObjects : [NSManagedObject] = []
+  var placeObjects : [NSManagedObject] = [] {
+    didSet {
+      centerOnLastAdded()
+    }
+  }
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
-    
-    fitMapToPlaces(placeObjects: fetchPlaces())
+    locationManager.delegate = self
     
     addReactiveMapHandlers()
+    
+    self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
+    
+    placeObjects = fetchPlaces()
+    
+    
+    if placeObjects.count > 1 {
+      let startingPoint = placeObjects.first
+      
+      centerTheMap(lat: startingPoint?.value(forKey: "latitude") as! Double, lon: startingPoint?.value(forKey: "latitude") as! Double)
+    } else {
+      locationManager.requestLocation()
+    }
+    
+  }
+  
+  func centerOnLastAdded() {
+    let last = placeObjects.last
+    let latitude = last?.value(forKey: "latitude") as! Double
+    let longitude = last?.value(forKey: "longitude") as! Double
+    
+    centerTheMap(lat: latitude, lon: longitude)
   }
   
   func addReactiveMapHandlers() {
@@ -134,8 +158,11 @@ class PlacesViewController: UIViewController {
     
     for object in resultData {
       managedContext.delete(object)
+      if let i = placeObjects.index(where: { $0 == object }) {
+        placeObjects.remove(at: i)
+      }
     }
-    
+
     do {
       try managedContext.save()
       print("saved!")
@@ -164,15 +191,6 @@ class PlacesViewController: UIViewController {
       return []
     }
 
-  }
-  
-  func addMarkerToMap(name: String, latitude: Double, longitude: Double) {
-    print("Adding marker to the map ", name, latitude, longitude)
-    let marker = GMSMarker()
-    marker.position = CLLocationCoordinate2DMake(latitude, longitude)
-    
-    
-    marker.map = mapView
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -249,6 +267,17 @@ class PlacesViewController: UIViewController {
     alertController.addAction(okAction)
     
     return alertController
+  }
+  
+  //Location manager 
+  func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    if let location = locations.first {
+      centerTheMap(lat: location.coordinate.latitude, lon: location.coordinate.longitude)
+    }
+  }
+  
+  func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+    print("Failed to find user's location: \(error.localizedDescription)")
   }
   
 }
